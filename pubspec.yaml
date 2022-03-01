@@ -35,14 +35,19 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   fl_chart: ^0.45.0
+  flutter_native_splash: ^2.0.5
+  ionicons: ^0.1.2
 
 dev_dependencies:
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.0.5
+  
 
 flutter_native_splash:
-  color: "#006BF2"
+  
+  background_image: assets/fon.png
+  image: assets/pig.png
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/rendering.dart';
 import 'package:vk/main_screen/sections.dart';
+import 'package:ionicons/ionicons.dart';
 
 class mainScreenWidget extends StatefulWidget {
   mainScreenWidget({Key? key}) : super(key: key);
@@ -10,6 +12,24 @@ class mainScreenWidget extends StatefulWidget {
 }
 
 class _mainScreenWidgetState extends State<mainScreenWidget> {
+  int _selectedTab = 0;
+
+  void onSelectTab(int index) {
+    if (_selectedTab == index) return;
+    setState(() {
+      _selectedTab = index;
+    });
+  }
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Income',
+    ),
+    Text(
+      'Expense',
+    ),
+  ];
+
   List<bool> isSelected = [true, false];
   @override
   Widget build(BuildContext context) {
@@ -35,8 +55,8 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                   child: PieChart(PieChartData(
                       sections: getSections(), centerSpaceRadius: 80)),
                 ),
-                SizedBox(height: 40),
-                _switchButton(),
+                //SizedBox(height: 40),
+                // _switchButton(),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -45,10 +65,25 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [_categoryWidget(), Spacer(), _addWidget()]),
                 ),
+                _widgetOptions[_selectedTab],
               ],
             )
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedTab,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Ionicons.arrow_down_outline),
+            label: 'Income',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Ionicons.arrow_up_outline),
+            label: 'Expense',
+          )
+        ],
+        onTap: onSelectTab,
       ),
     );
   }
@@ -74,48 +109,10 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             primary: Colors.white),
         onPressed: () {},
-        icon: Icon(Icons.arrow_downward, color: Colors.blue),
+        icon: Icon(Ionicons.grid_outline, color: Colors.blue),
         label: Text(
           'Category',
           style: TextStyle(color: Colors.black, fontSize: 15),
         ));
-  }
-
-  ToggleButtons _switchButton() {
-    return ToggleButtons(
-      borderRadius: BorderRadius.circular(25),
-      fillColor: Colors.blueAccent,
-      color: Colors.black,
-      selectedColor: Colors.white,
-      isSelected: isSelected,
-      onPressed: (int newIndex) {
-        if (newIndex == 0) {}
-        setState(() {
-          for (int index = 0; index < isSelected.length; index++) {
-            if (index == newIndex) {
-              isSelected[index] = true;
-            } else {
-              isSelected[index] = false;
-            }
-          }
-        });
-      },
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 70),
-          child: Text(
-            'Expense',
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 70),
-          child: Text(
-            'Income',
-            style: TextStyle(fontSize: 16),
-          ),
-        )
-      ],
-    );
   }
 }

@@ -15,9 +15,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(appBarTheme: AppBarTheme(backgroundColor: Colors.blue)),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(backgroundColor: Colors.blue),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.blue,
+          selectedItemColor: Color.fromARGB(255, 241, 241, 250),
+        ),
+      ),
       routes: {
-        '/': (context) => AuthWidget(),
+        //'/': (context) => AuthWidget(),
         '/main_screen': (context) => mainScreenWidget(),
         '/add': (context) => addWidget(),
       },
