@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../generated/l10n.dart';
+
 class addWidget extends StatefulWidget {
   addWidget({Key? key}) : super(key: key);
 
@@ -13,10 +15,10 @@ class _addWidgetState extends State<addWidget> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          title: Text('Expense'),
+          title: Text(S.of(context).Expense),
           centerTitle: true,
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: ListView(children: [
           Column(
             children: [
@@ -32,7 +34,7 @@ class _addWidgetState extends State<addWidget> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: Text(
-                          'How much?',
+                          S.of(context).How_Much_Expense,
                           style: TextStyle(color: Colors.white54, fontSize: 18),
                         ),
                       ),
@@ -40,7 +42,9 @@ class _addWidgetState extends State<addWidget> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: TextField(
-                        style: TextStyle(color: Colors.white, fontSize: 50),
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColorLight,
+                            fontSize: 50),
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(
@@ -48,7 +52,7 @@ class _addWidgetState extends State<addWidget> {
                             ),
                             hintText: "0",
                             hintStyle: TextStyle(
-                              color: Colors.white,
+                              color: Theme.of(context).primaryColorLight,
                               fontSize: 50,
                             )),
                       ),
@@ -58,7 +62,7 @@ class _addWidgetState extends State<addWidget> {
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(40),
                               topRight: Radius.circular(40)),
-                          color: Colors.white),
+                          color: Theme.of(context).primaryColorLight),
                       width: double.infinity,
                       height: 572,
                       child: Column(

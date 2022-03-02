@@ -1,8 +1,11 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
 import 'package:vk/main_screen/sections.dart';
 import 'package:ionicons/ionicons.dart';
+
+import '../generated/l10n.dart';
 
 class mainScreenWidget extends StatefulWidget {
   mainScreenWidget({Key? key}) : super(key: key);
@@ -34,14 +37,17 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: (() => AdaptiveTheme.of(context).setDark())),
       appBar: AppBar(
-        title: Text('Financial Report', style: TextStyle(color: Colors.black)),
+        title: Text(S.of(context).Financial_Report,
+            style: TextStyle(color: Theme.of(context).primaryColorDark)),
         centerTitle: true,
         elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColorLight,
       ),
       body: Container(
-        color: Colors.white,
+        color: Theme.of(context).primaryColorLight,
         child: ListView(
           children: [
             Column(
@@ -76,11 +82,11 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Ionicons.arrow_down_outline),
-            label: 'Income',
+            label: S.of(context).Income,
           ),
           BottomNavigationBarItem(
             icon: Icon(Ionicons.arrow_up_outline),
-            label: 'Expense',
+            label: S.of(context).Expense,
           )
         ],
         onTap: onSelectTab,
@@ -93,9 +99,10 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
       onPressed: () {
         Navigator.of(context).pushNamed('/add');
       },
-      child: Icon(Icons.add_circle_outline, color: Colors.black),
+      child: Icon(Icons.add_circle_outline,
+          color: Theme.of(context).primaryColorDark),
       style: OutlinedButton.styleFrom(
-          primary: Colors.white,
+          primary: Theme.of(context).primaryColorLight,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
     );
@@ -107,12 +114,14 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             onSurface: Colors.grey,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            primary: Colors.white),
+            primary: Theme.of(context).primaryColorLight),
         onPressed: () {},
-        icon: Icon(Ionicons.grid_outline, color: Colors.blue),
+        icon: Icon(Ionicons.grid_outline,
+            color: Theme.of(context).backgroundColor),
         label: Text(
-          'Category',
-          style: TextStyle(color: Colors.black, fontSize: 15),
+          S.of(context).Category,
+          style: TextStyle(
+              color: Theme.of(context).primaryColorDark, fontSize: 15),
         ));
   }
 }
