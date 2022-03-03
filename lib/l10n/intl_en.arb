@@ -4,6 +4,16 @@
     "Income": "Income",
     "Financial_Report": "Financial Report",
     "Category": "Category",
-    "Flutter_Demo": "Flutter Demo"
+    "Flutter_Demo": "Flutter Demo",
+    "Category_Education": "Education",
+    "Category_Workout": "Workout",
+    "Category_Family": "Family",
+    "Category_Transportation": "Transport",
+    "Category_Groceries": "Groceries",
+    "Category_Gifts": "Gifts",
+    "Category_Cafe": "Cafe",
+    "Category_More": "More",
+    "Add_Widget_Description":"Description",
+    "Add_Widget_Button":"Continue"
 
 }
