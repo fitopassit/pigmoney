@@ -3,5 +3,15 @@
     "How_Much_Expense": "Сколько вы потратили?",
     "Income": "Доход",
     "Financial_Report": "Финансовый отчет",
-    "Category": "Категории"
+    "Category": "Категории",
+    "Category_Education": "Образование",
+    "Category_Workout": "Тренировка",
+    "Category_Transportation": "Транспорт",
+    "Category_Family": "Семья",
+    "Category_Groceries": "Продукты",
+    "Category_Gifts": "Подарки",
+    "Category_Cafe": "Кафе",
+    "Category_More": "Ещё",
+    "Add_Widget_Description":"Описание",
+    "Add_Widget_Button":"Продолжить"
 }

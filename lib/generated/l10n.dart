@@ -109,6 +109,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Education`
+  String get Category_Education {
+    return Intl.message(
+      'Education',
+      name: 'Category_Education',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout`
+  String get Category_Workout {
+    return Intl.message(
+      'Workout',
+      name: 'Category_Workout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family`
+  String get Category_Family {
+    return Intl.message(
+      'Family',
+      name: 'Category_Family',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transport`
+  String get Category_Transportation {
+    return Intl.message(
+      'Transport',
+      name: 'Category_Transportation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Groceries`
+  String get Category_Groceries {
+    return Intl.message(
+      'Groceries',
+      name: 'Category_Groceries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gifts`
+  String get Category_Gifts {
+    return Intl.message(
+      'Gifts',
+      name: 'Category_Gifts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cafe`
+  String get Category_Cafe {
+    return Intl.message(
+      'Cafe',
+      name: 'Category_Cafe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More`
+  String get Category_More {
+    return Intl.message(
+      'More',
+      name: 'Category_More',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get Add_Widget_Description {
+    return Intl.message(
+      'Description',
+      name: 'Add_Widget_Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get Add_Widget_Button {
+    return Intl.message(
+      'Continue',
+      name: 'Add_Widget_Button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../generated/l10n.dart';
 
@@ -67,7 +68,47 @@ class _addWidgetState extends State<addWidget> {
                       height: 572,
                       child: Column(
                         children: [
+                          SizedBox(height: 40),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              _categoryButton(S.of(context).Category_Education,
+                                  Colors.pink, Ionicons.school_outline),
+                              _categoryButton(
+                                  S.of(context).Category_Workout,
+                                  Color.fromARGB(255, 56, 230, 192),
+                                  Ionicons.barbell_outline),
+                              _categoryButton(
+                                  S.of(context).Category_Transportation,
+                                  Colors.blue,
+                                  Ionicons.bus_outline),
+                              _categoryButton(S.of(context).Category_Family,
+                                  Colors.red, Ionicons.people_outline),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              _categoryButton(S.of(context).Category_Groceries,
+                                  Colors.orange, Ionicons.basket_outline),
+                              _categoryButton(
+                                  S.of(context).Category_Gifts,
+                                  Color.fromARGB(255, 203, 5, 238),
+                                  Ionicons.gift_outline),
+                              _categoryButton(
+                                  S.of(context).Category_Cafe,
+                                  Color.fromARGB(255, 0, 199, 106),
+                                  Ionicons.cafe_outline),
+                              _categoryButton(
+                                  S.of(context).Category_More,
+                                  Color.fromARGB(255, 247, 7, 207),
+                                  Ionicons.ellipsis_horizontal_outline),
+                            ],
+                          ),
                           SizedBox(height: 20),
+                          _descriptionWidget(context),
+                          Spacer(),
+                          _continueWidget(context)
                         ],
                       ),
                     )
@@ -77,5 +118,60 @@ class _addWidgetState extends State<addWidget> {
             ],
           ),
         ]));
+  }
+
+  Padding _descriptionWidget(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(14.0),
+      child: TextField(
+        decoration: InputDecoration(
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.circular(15)),
+            hintText: S.of(context).Add_Widget_Description,
+            hintStyle: TextStyle(
+              color: Colors.white,
+            )),
+      ),
+    );
+  }
+
+  Padding _continueWidget(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+      child: OutlinedButton(
+        onPressed: () {},
+        child: Text(
+          S.of(context).Add_Widget_Button,
+          style: TextStyle(color: Colors.white, fontSize: 16),
+        ),
+        style: OutlinedButton.styleFrom(
+          minimumSize: Size(double.infinity, 50),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          backgroundColor: Color.fromARGB(255, 33, 89, 243),
+        ),
+      ),
+    );
+  }
+
+  OutlinedButton _categoryButton(String name, Color color, IconData icon) {
+    return OutlinedButton(
+        style: OutlinedButton.styleFrom(
+            padding: EdgeInsets.all(10), side: BorderSide.none),
+        onPressed: () {},
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(7),
+              child: Icon(icon, color: Colors.white, size: 50),
+              decoration: new BoxDecoration(
+                color: color,
+                shape: BoxShape.circle,
+              ),
+            ),
+            Text(name, style: TextStyle(color: Colors.white))
+          ],
+        ));
   }
 }

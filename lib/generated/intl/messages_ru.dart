@@ -22,7 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Add_Widget_Button": MessageLookupByLibrary.simpleMessage("Продолжить"),
+        "Add_Widget_Description":
+            MessageLookupByLibrary.simpleMessage("Описание"),
         "Category": MessageLookupByLibrary.simpleMessage("Категории"),
+        "Category_Cafe": MessageLookupByLibrary.simpleMessage("Кафе"),
+        "Category_Education":
+            MessageLookupByLibrary.simpleMessage("Образование"),
+        "Category_Family": MessageLookupByLibrary.simpleMessage("Семья"),
+        "Category_Gifts": MessageLookupByLibrary.simpleMessage("Подарки"),
+        "Category_Groceries": MessageLookupByLibrary.simpleMessage("Продукты"),
+        "Category_More": MessageLookupByLibrary.simpleMessage("Ещё"),
+        "Category_Transportation":
+            MessageLookupByLibrary.simpleMessage("Транспорт"),
+        "Category_Workout": MessageLookupByLibrary.simpleMessage("Тренировка"),
         "Expense": MessageLookupByLibrary.simpleMessage("Расход"),
         "Financial_Report":
             MessageLookupByLibrary.simpleMessage("Финансовый отчет"),
