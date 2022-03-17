@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../generated/l10n.dart';
 
@@ -15,6 +17,7 @@ class _addWidgetState extends State<addWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColorLight,
           elevation: 0.0,
           title: Text(S.of(context).Expense),
           centerTitle: true,
@@ -24,6 +27,7 @@ class _addWidgetState extends State<addWidget> {
           Column(
             children: [
               Container(
+                color: Theme.of(context).primaryColorLight,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -34,26 +38,25 @@ class _addWidgetState extends State<addWidget> {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Text(
-                          S.of(context).How_Much_Expense,
-                          style: TextStyle(color: Colors.white54, fontSize: 18),
-                        ),
+                        child: Text(S.of(context).How_Much_Expense,
+                            style: GoogleFonts.lato(
+                              color: Colors.white,
+                              fontSize: 20,
+                            )),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: TextField(
-                        style: TextStyle(
-                            //color: Theme.of(context).primaryColorLight,
-                            fontSize: 50),
+                        style: TextStyle(fontSize: 50),
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(
                               borderSide: BorderSide.none,
                             ),
                             hintText: "0",
-                            hintStyle: TextStyle(
-                              color: Theme.of(context).primaryColorLight,
+                            hintStyle: GoogleFonts.lato(
+                              color: Colors.white,
                               fontSize: 50,
                             )),
                       ),
@@ -63,7 +66,7 @@ class _addWidgetState extends State<addWidget> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(40),
                             topRight: Radius.circular(40)),
-                        //color: Theme.of(context).primaryColorLight
+                        color: Theme.of(context).bottomAppBarColor,
                       ),
                       width: double.infinity,
                       height: 572,
@@ -126,13 +129,11 @@ class _addWidgetState extends State<addWidget> {
       padding: const EdgeInsets.all(14.0),
       child: TextField(
         decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(15)),
-            hintText: S.of(context).Add_Widget_Description,
-            hintStyle: TextStyle(
-                //color: Colors.white,
-                )),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+              borderRadius: BorderRadius.circular(15)),
+          hintText: S.of(context).Add_Widget_Description,
+        ),
       ),
     );
   }
@@ -144,15 +145,16 @@ class _addWidgetState extends State<addWidget> {
         onPressed: () {},
         child: Text(
           S.of(context).Add_Widget_Button,
-          style: TextStyle(
-              //color: Colors.white,
-              fontSize: 16),
+          style: GoogleFonts.lato(
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
         style: OutlinedButton.styleFrom(
           minimumSize: Size(double.infinity, 50),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          //backgroundColor: Color.fromARGB(255, 33, 89, 243),
+          backgroundColor: Theme.of(context).primaryColorDark,
         ),
       ),
     );
@@ -173,7 +175,11 @@ class _addWidgetState extends State<addWidget> {
                 shape: BoxShape.circle,
               ),
             ),
-            Text(name, style: TextStyle(color: Colors.white))
+            Text(name,
+                style: GoogleFonts.lato(
+                    color: Theme.of(context).hintColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700))
           ],
         ));
   }
