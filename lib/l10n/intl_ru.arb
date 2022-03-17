@@ -1,6 +1,7 @@
 {
     "Expense": "Расход",
     "How_Much_Expense": "Сколько вы потратили?",
+    "How_Much_Income":"Сколько вы заработали?",
     "Income": "Доход",
     "Financial_Report": "Финансовый отчет",
     "Category": "Категории",
@@ -13,5 +14,9 @@
     "Category_Cafe": "Кафе",
     "Category_More": "Ещё",
     "Add_Widget_Description":"Описание",
-    "Add_Widget_Button":"Продолжить"
+    "Add_Widget_Button":"Продолжить",
+    "Category_Paycheck":"Зарплата",
+    "Category_Interest":"Interest",
+    "Category_Stock":"Акции",
+    "Category_Other":"Другое"
 }

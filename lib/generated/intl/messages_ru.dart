@@ -33,6 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Category_Gifts": MessageLookupByLibrary.simpleMessage("Подарки"),
         "Category_Groceries": MessageLookupByLibrary.simpleMessage("Продукты"),
         "Category_More": MessageLookupByLibrary.simpleMessage("Ещё"),
+        "Category_Other": MessageLookupByLibrary.simpleMessage("Другое"),
+        "Category_Paycheck": MessageLookupByLibrary.simpleMessage("Зарплата"),
+        "Category_Stock": MessageLookupByLibrary.simpleMessage("Акции"),
         "Category_Transportation":
             MessageLookupByLibrary.simpleMessage("Транспорт"),
         "Category_Workout": MessageLookupByLibrary.simpleMessage("Тренировка"),
@@ -41,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Финансовый отчет"),
         "How_Much_Expense":
             MessageLookupByLibrary.simpleMessage("Сколько вы потратили?"),
+        "How_Much_Income":
+            MessageLookupByLibrary.simpleMessage("Сколько вы заработали?"),
         "Income": MessageLookupByLibrary.simpleMessage("Доход")
       };
 }

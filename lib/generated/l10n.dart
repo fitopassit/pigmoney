@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `How much you Income?`
+  String get How_Much_Income {
+    return Intl.message(
+      'How much you Income?',
+      name: 'How_Much_Income',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Income`
   String get Income {
     return Intl.message(
@@ -200,11 +210,41 @@ class S {
     );
   }
 
+  /// `Paycheck`
+  String get Category_Paycheck {
+    return Intl.message(
+      'Paycheck',
+      name: 'Category_Paycheck',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue`
   String get Add_Widget_Button {
     return Intl.message(
       'Continue',
       name: 'Add_Widget_Button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stock`
+  String get Category_Stock {
+    return Intl.message(
+      'Stock',
+      name: 'Category_Stock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get Category_Other {
+    return Intl.message(
+      'Other',
+      name: 'Category_Other',
       desc: '',
       args: [],
     );

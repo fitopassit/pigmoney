@@ -69,7 +69,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                     var theme = service.getByName(themeName);
                     ThemeSwitcher.of(context).changeTheme(theme: theme);
                   },
-                  icon: const Icon(Icons.brightness_3, size: 25),
+                  icon: const Icon(Ionicons.moon_outline, size: 25),
                 );
               },
             ),
@@ -129,7 +129,11 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
   OutlinedButton _addWidget() {
     return OutlinedButton(
       onPressed: () {
-        Navigator.of(context).pushNamed('/add');
+        if (_selectedTab == 0) {
+          Navigator.of(context).pushNamed('/addIncome');
+        } else {
+          Navigator.of(context).pushNamed('/addExpense');
+        }
       },
       child: Icon(
         Icons.add_circle_outline,

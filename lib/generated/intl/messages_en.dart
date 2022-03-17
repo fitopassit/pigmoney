@@ -32,6 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Category_Gifts": MessageLookupByLibrary.simpleMessage("Gifts"),
         "Category_Groceries": MessageLookupByLibrary.simpleMessage("Groceries"),
         "Category_More": MessageLookupByLibrary.simpleMessage("More"),
+        "Category_Other": MessageLookupByLibrary.simpleMessage("Other"),
+        "Category_Paycheck": MessageLookupByLibrary.simpleMessage("Paycheck"),
+        "Category_Stock": MessageLookupByLibrary.simpleMessage("Stock"),
         "Category_Transportation":
             MessageLookupByLibrary.simpleMessage("Transport"),
         "Category_Workout": MessageLookupByLibrary.simpleMessage("Workout"),
@@ -41,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Flutter_Demo": MessageLookupByLibrary.simpleMessage("Flutter Demo"),
         "How_Much_Expense":
             MessageLookupByLibrary.simpleMessage("How much you Expense?"),
+        "How_Much_Income":
+            MessageLookupByLibrary.simpleMessage("How much you Income?"),
         "Income": MessageLookupByLibrary.simpleMessage("Income")
       };
 }

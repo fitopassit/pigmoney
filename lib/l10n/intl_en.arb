@@ -1,6 +1,7 @@
 {
     "Expense": "Expense",
     "How_Much_Expense": "How much you Expense?",
+    "How_Much_Income":"How much you Income?",
     "Income": "Income",
     "Financial_Report": "Financial Report",
     "Category": "Category",
@@ -14,6 +15,9 @@
     "Category_Cafe": "Cafe",
     "Category_More": "More",
     "Add_Widget_Description":"Description",
-    "Add_Widget_Button":"Continue"
+    "Category_Paycheck":"Paycheck",
+    "Add_Widget_Button":"Continue",
+    "Category_Stock":"Stock",
+    "Category_Other":"Other"
 
 }

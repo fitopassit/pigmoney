@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vk/main_screen/add_widget.dart';
+import 'package:vk/main_screen/add_income_widget.dart';
 import 'package:vk/main_screen/main_screen_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vk/theme/theme.dart';
@@ -91,7 +92,8 @@ class MyApp extends StatelessWidget {
           routes: {
             //'/': (context) => AuthWidget(),
             '/main_screen': (context) => mainScreenWidget(),
-            '/add': (context) => addWidget(),
+            '/addExpense': (context) => addExpenseWidget(),
+            '/addIncome': (context) => addIncomeWidget(),
           },
           initialRoute: '/main_screen',
         );

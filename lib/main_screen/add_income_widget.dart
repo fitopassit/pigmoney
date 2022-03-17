@@ -4,21 +4,21 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../generated/l10n.dart';
 
-class addExpenseWidget extends StatefulWidget {
-  addExpenseWidget({Key? key}) : super(key: key);
+class addIncomeWidget extends StatefulWidget {
+  addIncomeWidget({Key? key}) : super(key: key);
 
   @override
-  State<addExpenseWidget> createState() => _addExpenseWidgetState();
+  State<addIncomeWidget> createState() => _addIncomeWidgetState();
 }
 
-class _addExpenseWidgetState extends State<addExpenseWidget> {
+class _addIncomeWidgetState extends State<addIncomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColorLight,
           elevation: 0.0,
-          title: Text(S.of(context).Expense),
+          title: Text(S.of(context).Income),
           centerTitle: true,
         ),
         //backgroundColor: Theme.of(context).backgroundColor,
@@ -37,7 +37,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Text(S.of(context).How_Much_Expense,
+                        child: Text(S.of(context).How_Much_Income,
                             style: GoogleFonts.lato(
                               color: Colors.white,
                               fontSize: 20,
@@ -75,33 +75,14 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _categoryButton(S.of(context).Category_Education,
-                                  Colors.pink, Ionicons.school_outline),
+                              _categoryButton(S.of(context).Category_Stock,
+                                  Colors.pink, Ionicons.analytics_outline),
+                              _categoryButton(S.of(context).Category_Gifts,
+                                  Colors.blue, Ionicons.gift_outline),
                               _categoryButton(
-                                  S.of(context).Category_Workout,
+                                  S.of(context).Category_Paycheck,
                                   Color.fromARGB(255, 56, 230, 192),
-                                  Ionicons.barbell_outline),
-                              _categoryButton(
-                                  S.of(context).Category_Transportation,
-                                  Colors.blue,
-                                  Ionicons.bus_outline),
-                              _categoryButton(S.of(context).Category_Family,
-                                  Colors.red, Ionicons.people_outline),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              _categoryButton(S.of(context).Category_Groceries,
-                                  Colors.orange, Ionicons.basket_outline),
-                              _categoryButton(
-                                  S.of(context).Category_Gifts,
-                                  Color.fromARGB(255, 203, 5, 238),
-                                  Ionicons.gift_outline),
-                              _categoryButton(
-                                  S.of(context).Category_Cafe,
-                                  Color.fromARGB(255, 0, 199, 106),
-                                  Ionicons.cafe_outline),
+                                  Ionicons.cash_outline),
                               _categoryButton(
                                   S.of(context).Category_More,
                                   Color.fromARGB(255, 247, 7, 207),
