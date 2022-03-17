@@ -19,7 +19,7 @@ class _addWidgetState extends State<addWidget> {
           title: Text(S.of(context).Expense),
           centerTitle: true,
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        //backgroundColor: Theme.of(context).backgroundColor,
         body: ListView(children: [
           Column(
             children: [
@@ -44,7 +44,7 @@ class _addWidgetState extends State<addWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: TextField(
                         style: TextStyle(
-                            color: Theme.of(context).primaryColorLight,
+                            //color: Theme.of(context).primaryColorLight,
                             fontSize: 50),
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
@@ -60,10 +60,11 @@ class _addWidgetState extends State<addWidget> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40)),
-                          color: Theme.of(context).primaryColorLight),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40)),
+                        //color: Theme.of(context).primaryColorLight
+                      ),
                       width: double.infinity,
                       height: 572,
                       child: Column(
@@ -130,8 +131,8 @@ class _addWidgetState extends State<addWidget> {
                 borderRadius: BorderRadius.circular(15)),
             hintText: S.of(context).Add_Widget_Description,
             hintStyle: TextStyle(
-              color: Colors.white,
-            )),
+                //color: Colors.white,
+                )),
       ),
     );
   }
@@ -143,13 +144,15 @@ class _addWidgetState extends State<addWidget> {
         onPressed: () {},
         child: Text(
           S.of(context).Add_Widget_Button,
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(
+              //color: Colors.white,
+              fontSize: 16),
         ),
         style: OutlinedButton.styleFrom(
           minimumSize: Size(double.infinity, 50),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          backgroundColor: Color.fromARGB(255, 33, 89, 243),
+          //backgroundColor: Color.fromARGB(255, 33, 89, 243),
         ),
       ),
     );

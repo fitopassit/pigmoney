@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
+import 'package:theme_provider/theme_provider.dart';
 import 'package:vk/main_screen/sections.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -34,6 +35,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
   ];
 
   List<bool> isSelected = [true, false];
+  bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,13 +43,24 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
           onPressed: (() => AdaptiveTheme.of(context).setDark())),
       appBar: AppBar(
         title: Text(S.of(context).Financial_Report,
-            style: TextStyle(color: Theme.of(context).primaryColorDark)),
+            style: TextStyle(
+                //color: Theme.of(context).primaryColorDark
+                )),
         centerTitle: true,
         elevation: 0.0,
-        backgroundColor: Theme.of(context).primaryColorLight,
+        //backgroundColor: Theme.of(context).primaryColorLight,
       ),
+      drawer: Drawer(
+          child: ListView(
+        children: [
+          ListTile(
+            title: Text('Switch theme'),
+            trailing: buildSwitch(),
+          )
+        ],
+      )),
       body: Container(
-        color: Theme.of(context).primaryColorLight,
+        //color: Theme.of(context).primaryColorLight,
         child: ListView(
           children: [
             Column(
@@ -99,10 +112,12 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
       onPressed: () {
         Navigator.of(context).pushNamed('/add');
       },
-      child: Icon(Icons.add_circle_outline,
-          color: Theme.of(context).primaryColorDark),
+      child: Icon(
+        Icons.add_circle_outline,
+        //color: Theme.of(context).primaryColorDark
+      ),
       style: OutlinedButton.styleFrom(
-          primary: Theme.of(context).primaryColorLight,
+          //primary: Theme.of(context).primaryColorLight,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
     );
@@ -111,17 +126,38 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
   OutlinedButton _categoryWidget() {
     return OutlinedButton.icon(
         style: OutlinedButton.styleFrom(
-            onSurface: Colors.grey,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            primary: Theme.of(context).primaryColorLight),
+          onSurface: Colors.grey,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+          //primary: Theme.of(context).primaryColorLight
+        ),
         onPressed: () {},
-        icon: Icon(Ionicons.grid_outline,
-            color: Theme.of(context).backgroundColor),
+        icon: Icon(
+          Ionicons.grid_outline,
+          //color: Theme.of(context).backgroundColor
+        ),
         label: Text(
           S.of(context).Category,
           style: TextStyle(
-              color: Theme.of(context).primaryColorDark, fontSize: 15),
+              //color: Theme.of(context).primaryColorDark,
+              fontSize: 15),
         ));
+  }
+
+  Widget buildSwitch() {
+    return Switch(
+        value: isSwitched,
+        onChanged: (value) {
+          setState(() {
+            isSwitched = value;
+            if (isSwitched) {
+              ThemeProvider.controllerOf(context)
+                  .setTheme('default_dark_theme');
+            } else {
+              ThemeProvider.controllerOf(context)
+                  .setTheme('default_light_theme');
+            }
+          });
+        });
   }
 }
