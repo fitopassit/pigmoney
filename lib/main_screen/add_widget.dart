@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../generated/l10n.dart';
 
@@ -12,6 +13,28 @@ class addExpenseWidget extends StatefulWidget {
 }
 
 class _addExpenseWidgetState extends State<addExpenseWidget> {
+  late List<Color> colors = [
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor
+  ];
+  late List<Color> textColors = [
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+  ];
+  late DateTime _myDateTime;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,40 +99,48 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               _categoryButton(S.of(context).Category_Education,
-                                  Colors.pink, Ionicons.school_outline),
+                                  Colors.pink, Ionicons.school_outline, 0),
                               _categoryButton(
                                   S.of(context).Category_Workout,
                                   Color.fromARGB(255, 56, 230, 192),
-                                  Ionicons.barbell_outline),
+                                  Ionicons.barbell_outline,
+                                  1),
                               _categoryButton(
                                   S.of(context).Category_Transportation,
                                   Colors.blue,
-                                  Ionicons.bus_outline),
+                                  Ionicons.bus_outline,
+                                  2),
                               _categoryButton(S.of(context).Category_Family,
-                                  Colors.red, Ionicons.people_outline),
+                                  Colors.red, Ionicons.people_outline, 3),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               _categoryButton(S.of(context).Category_Groceries,
-                                  Colors.orange, Ionicons.basket_outline),
+                                  Colors.orange, Ionicons.basket_outline, 4),
                               _categoryButton(
                                   S.of(context).Category_Gifts,
                                   Color.fromARGB(255, 203, 5, 238),
-                                  Ionicons.gift_outline),
+                                  Ionicons.gift_outline,
+                                  5),
                               _categoryButton(
                                   S.of(context).Category_Cafe,
                                   Color.fromARGB(255, 0, 199, 106),
-                                  Ionicons.cafe_outline),
+                                  Ionicons.cafe_outline,
+                                  6),
                               _categoryButton(
                                   S.of(context).Category_More,
                                   Color.fromARGB(255, 247, 7, 207),
-                                  Ionicons.ellipsis_horizontal_outline),
+                                  Ionicons.ellipsis_horizontal_outline,
+                                  7),
                             ],
                           ),
                           SizedBox(height: 20),
                           _descriptionWidget(context),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: _dataButton(Ionicons.calendar_outline)),
                           Spacer(),
                           _continueWidget(context)
                         ],
@@ -159,12 +190,52 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
     );
   }
 
-  OutlinedButton _categoryButton(String name, Color color, IconData icon) {
+  OutlinedButton _dataButton(IconData icon) {
     return OutlinedButton(
         style: OutlinedButton.styleFrom(
-            padding: EdgeInsets.all(10), side: BorderSide.none),
-        onPressed: () {},
+          padding: EdgeInsets.all(5),
+          side: BorderSide.none,
+          shape: CircleBorder(side: BorderSide(width: 1.0)),
+        ),
+        onPressed: () async {
+          _myDateTime = (await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime(2100),
+          ))!;
+        },
+        child: Container(
+          padding: EdgeInsets.all(7),
+          child: Icon(icon, color: Color.fromARGB(255, 0, 0, 0), size: 30),
+        ));
+  }
+
+  OutlinedButton _categoryButton(
+      String name, Color color, IconData icon, int index) {
+    return OutlinedButton(
+        style: OutlinedButton.styleFrom(
+            backgroundColor: colors[index],
+            minimumSize: Size.square(100),
+            padding: EdgeInsets.all(10),
+            side: BorderSide.none),
+        onPressed: () {
+          setState(() {
+            for (int buttonIndex = 0;
+                buttonIndex < colors.length;
+                buttonIndex++) {
+              if (buttonIndex == index) {
+                colors[buttonIndex] = color;
+                textColors[buttonIndex] = Colors.white;
+              } else {
+                colors[buttonIndex] = Theme.of(context).bottomAppBarColor;
+                textColors[buttonIndex] = Theme.of(context).hintColor;
+              }
+            }
+          });
+        },
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               padding: EdgeInsets.all(7),
@@ -176,7 +247,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
             ),
             Text(name,
                 style: GoogleFonts.lato(
-                    color: Theme.of(context).hintColor,
+                    color: textColors[index],
                     fontSize: 12,
                     fontWeight: FontWeight.w700))
           ],

@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColorDark: Color.fromARGB(255, 46, 48, 51),
     primaryColorLight: Color.fromARGB(255, 99, 102, 106),
-    shadowColor: Color.fromARGB(255, 62, 213, 152));
+    shadowColor: Color.fromARGB(255, 62, 213, 152),
+    hintColor: Colors.white);
 
 ThemeData lightTheme = ThemeData.light().copyWith(
-  primaryColorDark: Color.fromARGB(255, 33, 89, 243),
-  primaryColorLight: Color.fromARGB(255, 0, 119, 255),
-);
+    primaryColorDark: Color.fromARGB(255, 33, 89, 243),
+    primaryColorLight: Color.fromARGB(255, 0, 119, 255),
+    hintColor: Colors.black);
 
 final DarkTheme = ThemeData.dark().copyWith(
   appBarTheme: AppBarTheme(backgroundColor: Colors.black87),

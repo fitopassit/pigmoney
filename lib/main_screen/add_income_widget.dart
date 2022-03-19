@@ -12,6 +12,19 @@ class addIncomeWidget extends StatefulWidget {
 }
 
 class _addIncomeWidgetState extends State<addIncomeWidget> {
+  late List<Color> colors = [
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+    Theme.of(context).bottomAppBarColor,
+  ];
+  late List<Color> textColors = [
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+    Theme.of(context).hintColor,
+  ];
+  late DateTime _myDateTime;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,21 +89,26 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               _categoryButton(S.of(context).Category_Stock,
-                                  Colors.pink, Ionicons.analytics_outline),
+                                  Colors.pink, Ionicons.analytics_outline, 0),
                               _categoryButton(S.of(context).Category_Gifts,
-                                  Colors.blue, Ionicons.gift_outline),
+                                  Colors.blue, Ionicons.gift_outline, 1),
                               _categoryButton(
                                   S.of(context).Category_Paycheck,
                                   Color.fromARGB(255, 56, 230, 192),
-                                  Ionicons.cash_outline),
+                                  Ionicons.cash_outline,
+                                  2),
                               _categoryButton(
                                   S.of(context).Category_More,
                                   Color.fromARGB(255, 247, 7, 207),
-                                  Ionicons.ellipsis_horizontal_outline),
+                                  Ionicons.ellipsis_horizontal_outline,
+                                  3),
                             ],
                           ),
                           SizedBox(height: 20),
                           _descriptionWidget(context),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: _dataButton(Ionicons.calendar_outline)),
                           Spacer(),
                           _continueWidget(context)
                         ],
@@ -140,12 +158,52 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
     );
   }
 
-  OutlinedButton _categoryButton(String name, Color color, IconData icon) {
+  OutlinedButton _dataButton(IconData icon) {
     return OutlinedButton(
         style: OutlinedButton.styleFrom(
-            padding: EdgeInsets.all(10), side: BorderSide.none),
-        onPressed: () {},
+          padding: EdgeInsets.all(5),
+          side: BorderSide.none,
+          shape: CircleBorder(side: BorderSide(width: 1.0)),
+        ),
+        onPressed: () async {
+          _myDateTime = (await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2000),
+            lastDate: DateTime(2100),
+          ))!;
+        },
+        child: Container(
+          padding: EdgeInsets.all(7),
+          child: Icon(icon, color: Color.fromARGB(255, 0, 0, 0), size: 30),
+        ));
+  }
+
+  OutlinedButton _categoryButton(
+      String name, Color color, IconData icon, int index) {
+    return OutlinedButton(
+        style: OutlinedButton.styleFrom(
+            backgroundColor: colors[index],
+            minimumSize: Size.square(100),
+            padding: EdgeInsets.all(10),
+            side: BorderSide.none),
+        onPressed: () {
+          setState(() {
+            for (int buttonIndex = 0;
+                buttonIndex < colors.length;
+                buttonIndex++) {
+              if (buttonIndex == index) {
+                colors[buttonIndex] = color;
+                textColors[buttonIndex] = Colors.white;
+              } else {
+                colors[buttonIndex] = Theme.of(context).bottomAppBarColor;
+                textColors[buttonIndex] = Theme.of(context).hintColor;
+              }
+            }
+          });
+        },
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               padding: EdgeInsets.all(7),
@@ -157,7 +215,7 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
             ),
             Text(name,
                 style: GoogleFonts.lato(
-                    color: Theme.of(context).hintColor,
+                    color: textColors[index],
                     fontSize: 12,
                     fontWeight: FontWeight.w700))
           ],
