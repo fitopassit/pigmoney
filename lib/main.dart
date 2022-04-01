@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vk/main_screen/add_widget.dart';
+import 'package:vk/main_screen/add_expence_widget.dart';
 import 'package:vk/main_screen/add_income_widget.dart';
 import 'package:vk/main_screen/main_screen_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -101,3 +101,24 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+// import 'package:hive/hive.dart';
+
+// @HiveType(typeId: 0)
+// class Transaction extends HiveObject {
+// 	@HiveField(0)
+// 	late String name;
+
+// 	@HiveField(1)
+// 	late DateTime createdDate;
+
+// 	@HiveField(2)
+// 	late bool isExpense = true;
+
+// 	@HiveField(3)
+// 	late double amount; 
+// }
