@@ -10,7 +10,7 @@ List<PieChartSectionData> getSections() => PieData.dataEx
       //final double radius = isTouched ? 100 : 80;
 
       final value = PieChartSectionData(
-        color: data.color,
+        color: Colors.white,
         value: data.percent,
         title: '${data.percent}%',
         //radius: radius,

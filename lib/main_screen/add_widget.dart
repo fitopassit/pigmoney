@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../generated/l10n.dart';
+import 'boxes.dart';
+import 'data.dart';
 
 class addExpenseWidget extends StatefulWidget {
   addExpenseWidget({Key? key}) : super(key: key);
@@ -13,6 +16,13 @@ class addExpenseWidget extends StatefulWidget {
 }
 
 class _addExpenseWidgetState extends State<addExpenseWidget> {
+  @override
+  void dispose() {
+    Hive.box('data').close();
+
+    super.dispose();
+  }
+
   late List<Color> colors = [
     Theme.of(context).bottomAppBarColor,
     Theme.of(context).bottomAppBarColor,
@@ -34,6 +44,9 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
     Theme.of(context).hintColor,
   ];
   late DateTime _myDateTime;
+  final controller = TextEditingController();
+  late Color col;
+  late String category_name;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +83,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: TextField(
+                        controller: controller,
                         style: TextStyle(fontSize: 50, color: Colors.white),
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
@@ -142,7 +156,8 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
                               alignment: Alignment.centerRight,
                               child: _dataButton(Ionicons.calendar_outline)),
                           Spacer(),
-                          _continueWidget(context)
+                          _continueWidget(context),
+                          SizedBox(height: 20),
                         ],
                       ),
                     )
@@ -172,7 +187,11 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          addTransaction(category_name, double.parse(controller.text), 150,
+              double.parse(controller.text) / 100);
+          Navigator.of(context).pushNamed('/main_screen');
+        },
         child: Text(
           S.of(context).Add_Widget_Button,
           style: GoogleFonts.lato(
@@ -221,6 +240,8 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
             side: BorderSide.none),
         onPressed: () {
           setState(() {
+            col = color;
+            category_name = name;
             for (int buttonIndex = 0;
                 buttonIndex < colors.length;
                 buttonIndex++) {
@@ -252,5 +273,17 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
                     fontWeight: FontWeight.w700))
           ],
         ));
+  }
+
+  Future addTransaction(
+      String name, double cost, int color, double percent) async {
+    final data = Data()
+      ..name = name
+      ..cost = cost
+      ..color = color
+      ..percent = percent;
+
+    final box = Boxes.getTransactions();
+    box.add(data);
   }
 }

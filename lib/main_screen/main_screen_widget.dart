@@ -2,11 +2,15 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:vk/main_screen/sections.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../generated/l10n.dart';
 import '../main.dart';
+import 'boxes.dart';
+import 'data.dart';
 
 class mainScreenWidget extends StatefulWidget {
   mainScreenWidget({Key? key}) : super(key: key);
@@ -101,6 +105,27 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [_categoryWidget(), Spacer(), _addWidget()]),
                 ),
+                SizedBox(height: 20),
+                ValueListenableBuilder<Box<Data>>(
+                    valueListenable: Boxes.getTransactions().listenable(),
+                    builder: (context, box, _) {
+                      final transactions = box.values.toList().cast<Data>();
+                      if (transactions.isEmpty) {
+                        return Center(
+                          child: Text("mat' ebal"),
+                        );
+                      }
+                      return SizedBox(
+                        height: 300,
+                        child: ListView.builder(
+                            padding: EdgeInsets.all(8),
+                            itemCount: transactions.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final transaction = transactions[index];
+                              return buildTransaction(transaction, context);
+                            }),
+                      );
+                    }),
                 _widgetOptions[_selectedTab],
               ],
             )
@@ -122,6 +147,27 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
           )
         ],
         onTap: onSelectTab,
+      ),
+    );
+  }
+
+  Widget buildTransaction(Data data, BuildContext context) {
+    final color = Colors.green;
+    final cost = '\₽' + data.cost.toStringAsFixed(2);
+    final name = data.name;
+    return Card(
+      color: Colors.green,
+      child: ExpansionTile(
+        title: Text(
+          name,
+          style: TextStyle(fontSize: 18),
+        ),
+        trailing: Text(
+          cost,
+          style: TextStyle(
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }

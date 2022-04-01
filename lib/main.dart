@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vk/main_screen/add_widget.dart';
 import 'package:vk/main_screen/add_income_widget.dart';
@@ -7,10 +8,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vk/theme/theme.dart';
 import 'generated/l10n.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import 'main_screen/data.dart';
 //import 'package:theme_provider/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(DataAdapter());
+  await Hive.openBox<Data>('data');
   final themeServise = await ThemeService.instance;
   var initTheme = themeServise.initial;
   runApp(MyApp(theme: initTheme));
