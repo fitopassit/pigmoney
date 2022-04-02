@@ -92,11 +92,17 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             SizedBox(
               width: 100.0.w,
               height: 30.0.h,
-              child: PieChart(PieChartData(
-                  sections: getSections(getBox()),
-                  centerSpaceRadius: 0,
-                  borderData: FlBorderData(show: false),
-                  sectionsSpace: 0)),
+              child: ValueListenableBuilder(
+                  valueListenable: listen(),
+                  builder: (context, box, _) {
+                    //final transactions = box.values.toList().cast<Data>();
+
+                    return PieChart(PieChartData(
+                        sections: getSections(getBox()),
+                        centerSpaceRadius: 0,
+                        borderData: FlBorderData(show: false),
+                        sectionsSpace: 0));
+                  }),
             ),
             //SizedBox(height: 40),
             // _switchButton(),
