@@ -16,12 +16,11 @@ class addExpenseWidget extends StatefulWidget {
 }
 
 class _addExpenseWidgetState extends State<addExpenseWidget> {
-  @override
-  void dispose() {
-    Hive.box('data').close();
-
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   Hive.box('data_expense').close();
+  //   super.dispose();
+  // }
 
   late List<Color> colors = [
     Theme.of(context).bottomAppBarColor,
@@ -290,7 +289,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
       ..color = color
       ..percent = percent;
 
-    final box = Boxes.getTransactions();
+    final box = Boxes.getTransactionsExpense();
     box.add(data);
   }
 }

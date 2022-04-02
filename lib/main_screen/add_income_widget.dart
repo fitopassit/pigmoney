@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../generated/l10n.dart';
+import 'boxes.dart';
+import 'data.dart';
 
 class addIncomeWidget extends StatefulWidget {
   addIncomeWidget({Key? key}) : super(key: key);
@@ -12,6 +15,12 @@ class addIncomeWidget extends StatefulWidget {
 }
 
 class _addIncomeWidgetState extends State<addIncomeWidget> {
+  @override
+  // void dispose() {
+  //   Hive.box('data_income').close();
+  //   super.dispose();
+  // }
+
   late List<Color> colors = [
     Theme.of(context).bottomAppBarColor,
     Theme.of(context).bottomAppBarColor,
@@ -25,6 +34,9 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
     Theme.of(context).hintColor,
   ];
   late DateTime _myDateTime;
+  final controller = TextEditingController();
+  late String col;
+  late String category_name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +72,7 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: TextField(
+                        controller: controller,
                         style: TextStyle(fontSize: 50, color: Colors.white),
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
@@ -140,7 +153,11 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          addTransaction(category_name, double.parse(controller.text), col,
+              double.parse(controller.text) / 100);
+          Navigator.of(context).pushNamed('/main_screen');
+        },
         child: Text(
           S.of(context).Add_Widget_Button,
           style: GoogleFonts.lato(
@@ -189,6 +206,15 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
             side: BorderSide.none),
         onPressed: () {
           setState(() {
+            col = color.alpha.toString() +
+                ', ' +
+                color.red.toString() +
+                ', ' +
+                color.green.toString() +
+                ', ' +
+                color.blue.toString() +
+                ', ';
+            category_name = name;
             for (int buttonIndex = 0;
                 buttonIndex < colors.length;
                 buttonIndex++) {
@@ -220,5 +246,17 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
                     fontWeight: FontWeight.w700))
           ],
         ));
+  }
+
+  Future addTransaction(
+      String name, double cost, String color, double percent) async {
+    final data = Data()
+      ..name = name
+      ..cost = cost
+      ..color = color
+      ..percent = percent;
+
+    final box = Boxes.getTransactionsIncome();
+    box.add(data);
   }
 }

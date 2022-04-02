@@ -3,7 +3,11 @@ import 'data.dart';
 //import 'package:hive_database_example/main_screen/data.dart';
 
 class Boxes {
-  static Box<Data> getTransactions() {
-    return Hive.box<Data>('data');
+  static Box<Data> getTransactionsExpense() {
+    return Hive.box<Data>('data_expense');
+  }
+
+  static Box<Data> getTransactionsIncome() {
+    return Hive.box<Data>('data_income');
   }
 }

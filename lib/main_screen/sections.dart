@@ -1,11 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:hive/hive.dart';
 import 'package:vk/main_screen/money.dart';
 import 'package:flutter/material.dart';
 
 import 'boxes.dart';
+import 'data.dart';
 
-List<PieChartSectionData> getSections() => Boxes.getTransactions()
-    .values
+List<PieChartSectionData> getSections(Box<Data> type) => type.values
     .toList()
     .asMap()
     .map<int, PieChartSectionData>((index, data) {
@@ -13,7 +14,7 @@ List<PieChartSectionData> getSections() => Boxes.getTransactions()
       //final double fontSize = isTouched ? 25 : 16;
       //final double radius = isTouched ? 100 : 80;
       double sum = 0;
-      for (var transaction in Boxes.getTransactions().values.toList()) {
+      for (var transaction in type.values.toList()) {
         sum += transaction.cost;
       }
       data.percent = double.parse(((data.cost / sum) * 100).toStringAsFixed(2));
@@ -23,9 +24,11 @@ List<PieChartSectionData> getSections() => Boxes.getTransactions()
           int.parse(data.color.split(', ')[2]),
           int.parse(data.color.split(', ')[3]));
       final value = PieChartSectionData(
+        radius: 100,
         color: color,
         value: data.percent,
         title: '${data.percent}%',
+        showTitle: false,
         //radius: radius,
         titleStyle: TextStyle(
           //fontSize: fontSize,

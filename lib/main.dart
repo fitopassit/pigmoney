@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'package:vk/main_screen/add_widget.dart';
 import 'package:vk/main_screen/add_income_widget.dart';
 import 'package:vk/main_screen/main_screen_widget.dart';
@@ -17,7 +18,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(DataAdapter());
-  await Hive.openBox<Data>('data');
+  await Hive.openBox<Data>('data_expense');
+  await Hive.openBox<Data>('data_income');
   final themeServise = await ThemeService.instance;
   var initTheme = themeServise.initial;
   runApp(MyApp(theme: initTheme));
@@ -86,23 +88,27 @@ class MyApp extends StatelessWidget {
     return ThemeProvider(
       initTheme: theme,
       builder: (_, theme) {
-        return MaterialApp(
-          localizationsDelegates: [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          title: 'Flutter Demo',
-          theme: theme,
-          routes: {
-            //'/': (context) => AuthWidget(),
-            '/main_screen': (context) => mainScreenWidget(),
-            '/addExpense': (context) => addExpenseWidget(),
-            '/addIncome': (context) => addIncomeWidget(),
+        return Sizer(
+          builder: (context, orientation, deviceType) {
+            return MaterialApp(
+              localizationsDelegates: [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              title: 'Flutter Demo',
+              theme: theme,
+              routes: {
+                //'/': (context) => AuthWidget(),
+                '/main_screen': (context) => mainScreenWidget(),
+                '/addExpense': (context) => addExpenseWidget(),
+                '/addIncome': (context) => addIncomeWidget(),
+              },
+              initialRoute: '/main_screen',
+            );
           },
-          initialRoute: '/main_screen',
         );
       },
     );

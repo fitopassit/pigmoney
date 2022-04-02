@@ -1,4 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
@@ -6,7 +7,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:vk/main_screen/sections.dart';
 import 'package:ionicons/ionicons.dart';
-
+import 'package:sizer/sizer.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import '../generated/l10n.dart';
 import '../main.dart';
 import 'boxes.dart';
@@ -88,10 +90,13 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
               height: 40,
             ),
             SizedBox(
-              width: 250,
-              height: 250,
-              child: PieChart(
-                  PieChartData(sections: getSections(), centerSpaceRadius: 80)),
+              width: 100.0.w,
+              height: 30.0.h,
+              child: PieChart(PieChartData(
+                  sections: getSections(getBox()),
+                  centerSpaceRadius: 0,
+                  borderData: FlBorderData(show: false),
+                  sectionsSpace: 0)),
             ),
             //SizedBox(height: 40),
             // _switchButton(),
@@ -105,16 +110,16 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             ),
             SizedBox(height: 20),
             ValueListenableBuilder<Box<Data>>(
-                valueListenable: Boxes.getTransactions().listenable(),
+                valueListenable: listen(),
                 builder: (context, box, _) {
                   final transactions = box.values.toList().cast<Data>();
                   if (transactions.isEmpty) {
                     return Center(
-                      child: Text("mat' ebal"),
+                      child: Text("Nothing there"),
                     );
                   }
                   return SizedBox(
-                    height: 300,
+                    height: 35.0.h,
                     child: ListView.builder(
                         reverse: true,
                         padding: EdgeInsets.all(8),
@@ -148,6 +153,20 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
     );
   }
 
+  ValueListenable<Box<Data>> listen() {
+    ValueListenable<Box<Data>> value = _selectedTab == 0
+        ? Boxes.getTransactionsIncome().listenable()
+        : Boxes.getTransactionsExpense().listenable();
+    return value;
+  }
+
+  Box<Data> getBox() {
+    Box<Data> data = _selectedTab == 0
+        ? Boxes.getTransactionsIncome()
+        : Boxes.getTransactionsExpense();
+    return data;
+  }
+
   Widget buildTransaction(Data data, BuildContext context) {
     final color = Color.fromARGB(
         int.parse(data.color.split(', ')[0]),
@@ -157,18 +176,44 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
     bool isExpense = _selectedTab == 0 ? false : true;
     final cost = '\₽' + data.cost.toStringAsFixed(2);
     final name = data.name;
-    return Card(
-      color: isExpense == false
-          ? Color.fromARGB(255, 43, 148, 106)
-          : Color.fromARGB(255, 224, 67, 75),
-      child: ExpansionTile(
-        title: Text(
-          name,
-          style: TextStyle(fontSize: 18, color: Colors.white),
-        ),
-        trailing: Text(
-          cost,
-          style: TextStyle(fontSize: 16, color: Colors.white),
+    return Slidable(
+      // Specify a key if the Slidable is dismissible.
+      key: UniqueKey(),
+
+      // The start action pane is the one at the left or the top side.
+      startActionPane: ActionPane(
+        // A motion is a widget used to control how the pane animates.
+        motion: const ScrollMotion(),
+
+        // A pane can dismiss the Slidable.
+        dismissible:
+            DismissiblePane(onDismissed: () => deleteTransaction(data)),
+
+        // All actions are defined in the children parameter.
+        children: [
+          // A SlidableAction can have an icon and/or a label.
+          SlidableAction(
+            onPressed: (BuildContext context) => deleteTransaction(data),
+            backgroundColor: Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+          ),
+        ],
+      ),
+      child: Card(
+        color: isExpense == false
+            ? Color.fromARGB(255, 43, 148, 106)
+            : Color.fromARGB(255, 224, 67, 75),
+        child: ExpansionTile(
+          title: Text(
+            name,
+            style: TextStyle(fontSize: 18, color: Colors.white),
+          ),
+          trailing: Text(
+            cost,
+            style: TextStyle(fontSize: 16, color: Colors.white),
+          ),
         ),
       ),
     );
@@ -209,6 +254,14 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         ));
   }
 
+  void deleteTransaction(Data data) {
+    // final box = Boxes.getTransactions();
+    // box.delete(transaction.key);
+    // var box = await Hive.openBox('data');
+    // await box.delete();
+    data.delete();
+    //setState(() => transactions.remove(transaction));
+  }
   // Widget buildSwitch() {
   //   return Switch(
   //       value: isSwitched,
