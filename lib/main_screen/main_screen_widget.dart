@@ -152,11 +152,15 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
   }
 
   Widget buildTransaction(Data data, BuildContext context) {
-    final color = Colors.green;
+    final color = Color.fromARGB(
+        int.parse(data.color.split(', ')[0]),
+        int.parse(data.color.split(', ')[1]),
+        int.parse(data.color.split(', ')[2]),
+        int.parse(data.color.split(', ')[3]));
     final cost = '\₽' + data.cost.toStringAsFixed(2);
     final name = data.name;
     return Card(
-      color: Colors.green,
+      color: color,
       child: ExpansionTile(
         title: Text(
           name,

@@ -10,7 +10,7 @@ class Data extends HiveObject {
   @HiveField(1)
   late double cost;
   @HiveField(2)
-  late int color;
+  late String color;
   @HiveField(3)
   late double percent;
 }

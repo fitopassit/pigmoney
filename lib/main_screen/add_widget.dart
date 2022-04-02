@@ -45,7 +45,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
   ];
   late DateTime _myDateTime;
   final controller = TextEditingController();
-  late Color col;
+  late String col;
   late String category_name;
 
   @override
@@ -188,7 +188,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
       child: OutlinedButton(
         onPressed: () {
-          addTransaction(category_name, double.parse(controller.text), 150,
+          addTransaction(category_name, double.parse(controller.text), col,
               double.parse(controller.text) / 100);
           Navigator.of(context).pushNamed('/main_screen');
         },
@@ -240,7 +240,14 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
             side: BorderSide.none),
         onPressed: () {
           setState(() {
-            col = color;
+            col = color.alpha.toString() +
+                ', ' +
+                color.red.toString() +
+                ', ' +
+                color.green.toString() +
+                ', ' +
+                color.blue.toString() +
+                ', ';
             category_name = name;
             for (int buttonIndex = 0;
                 buttonIndex < colors.length;
@@ -276,7 +283,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
   }
 
   Future addTransaction(
-      String name, double cost, int color, double percent) async {
+      String name, double cost, String color, double percent) async {
     final data = Data()
       ..name = name
       ..cost = cost

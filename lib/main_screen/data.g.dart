@@ -19,7 +19,7 @@ class DataAdapter extends TypeAdapter<Data> {
     return Data()
       ..name = fields[0] as String
       ..cost = fields[1] as double
-      ..color = fields[2] as int
+      ..color = fields[2] as String
       ..percent = fields[3] as double;
   }
 
