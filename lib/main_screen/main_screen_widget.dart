@@ -82,53 +82,50 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
       ))),
       body: Container(
         //color: Theme.of(context).primaryColorLight,
-        child: ListView(
+        child: Column(
           children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                SizedBox(
-                  width: 250,
-                  height: 250,
-                  child: PieChart(PieChartData(
-                      sections: getSections(), centerSpaceRadius: 80)),
-                ),
-                //SizedBox(height: 40),
-                // _switchButton(),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [_categoryWidget(), Spacer(), _addWidget()]),
-                ),
-                SizedBox(height: 20),
-                ValueListenableBuilder<Box<Data>>(
-                    valueListenable: Boxes.getTransactions().listenable(),
-                    builder: (context, box, _) {
-                      final transactions = box.values.toList().cast<Data>();
-                      if (transactions.isEmpty) {
-                        return Center(
-                          child: Text("mat' ebal"),
-                        );
-                      }
-                      return SizedBox(
-                        height: 300,
-                        child: ListView.builder(
-                            padding: EdgeInsets.all(8),
-                            itemCount: transactions.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final transaction = transactions[index];
-                              return buildTransaction(transaction, context);
-                            }),
-                      );
-                    }),
-                _widgetOptions[_selectedTab],
-              ],
-            )
+            SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              width: 250,
+              height: 250,
+              child: PieChart(
+                  PieChartData(sections: getSections(), centerSpaceRadius: 80)),
+            ),
+            //SizedBox(height: 40),
+            // _switchButton(),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [_categoryWidget(), Spacer(), _addWidget()]),
+            ),
+            SizedBox(height: 20),
+            ValueListenableBuilder<Box<Data>>(
+                valueListenable: Boxes.getTransactions().listenable(),
+                builder: (context, box, _) {
+                  final transactions = box.values.toList().cast<Data>();
+                  if (transactions.isEmpty) {
+                    return Center(
+                      child: Text("mat' ebal"),
+                    );
+                  }
+                  return SizedBox(
+                    height: 300,
+                    child: ListView.builder(
+                        reverse: true,
+                        padding: EdgeInsets.all(8),
+                        itemCount: transactions.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final transaction = transactions[index];
+                          return buildTransaction(transaction, context);
+                        }),
+                  );
+                }),
+            //_widgetOptions[_selectedTab],
           ],
         ),
       ),
@@ -157,20 +154,21 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         int.parse(data.color.split(', ')[1]),
         int.parse(data.color.split(', ')[2]),
         int.parse(data.color.split(', ')[3]));
+    bool isExpense = _selectedTab == 0 ? false : true;
     final cost = '\₽' + data.cost.toStringAsFixed(2);
     final name = data.name;
     return Card(
-      color: color,
+      color: isExpense == false
+          ? Color.fromARGB(255, 43, 148, 106)
+          : Color.fromARGB(255, 224, 67, 75),
       child: ExpansionTile(
         title: Text(
           name,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 18, color: Colors.white),
         ),
         trailing: Text(
           cost,
-          style: TextStyle(
-            fontSize: 16,
-          ),
+          style: TextStyle(fontSize: 16, color: Colors.white),
         ),
       ),
     );
