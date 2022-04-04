@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
@@ -22,6 +23,7 @@ void main() async {
   await Hive.openBox<Data>('data_income');
   final themeServise = await ThemeService.instance;
   var initTheme = themeServise.initial;
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MyApp(theme: initTheme));
 }
 
@@ -91,6 +93,7 @@ class MyApp extends StatelessWidget {
         return Sizer(
           builder: (context, orientation, deviceType) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               localizationsDelegates: [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
