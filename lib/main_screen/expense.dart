@@ -308,6 +308,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
     Balance.balance -= cost;
     Hive.box<double>('balance').put('bal', Balance.balance);
     final box = Boxes.getTransactionsExpense();
+    Hive.box<double>('balance').put('bal', Balance.balance);
     box.add(data);
   }
 }
