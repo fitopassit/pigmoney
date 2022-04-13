@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vk/main_screen/add_widget.dart';
+import 'package:vk/main_screen/expense.dart';
 import 'package:vk/main_screen/add_income_widget.dart';
 import 'package:vk/main_screen/main_screen_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,9 +21,14 @@ void main() async {
   Hive.registerAdapter(DataAdapter());
   await Hive.openBox<Data>('data_expense');
   await Hive.openBox<Data>('data_income');
+  await Hive.openBox<double>('balance');
+  // Hive.box<double>('balance').clear();
+  if (Hive.box<double>('balance').get('bal') == null) {
+    Hive.box<double>('balance').put('bal', 0.0);
+  }
+  Balance.balance = Hive.box<double>('balance').get('bal')!;
   final themeServise = await ThemeService.instance;
   var initTheme = themeServise.initial;
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MyApp(theme: initTheme));
 }
 
