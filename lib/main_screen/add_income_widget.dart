@@ -156,7 +156,7 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
         onPressed: () {
           addTransaction(category_name, double.parse(controller.text), col,
               double.parse(controller.text) / 100);
-          Navigator.of(context).pushNamed('/main_screen');
+          Navigator.of(context).pop();
         },
         child: Text(
           S.of(context).Add_Widget_Button,
@@ -250,13 +250,31 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
 
   Future addTransaction(
       String name, double cost, String color, double percent) async {
+    bool check = false;
     final data = Data()
       ..name = name
       ..cost = cost
       ..color = color
       ..percent = percent;
-
+    final dataPie = DataPie()
+      ..name = name
+      ..cost = cost
+      ..color = color
+      ..percent = percent;
+    final boxPie = Hive.box<DataPie>('data_income_pie');
+    for (var transaction in boxPie.values.toList()) {
+      if (transaction.name == dataPie.name) {
+        transaction.cost += dataPie.cost;
+        transaction.save();
+        check = true;
+      }
+    }
+    if (!check) {
+      boxPie.add(dataPie);
+    }
+    Balance.balance += cost;
     final box = Boxes.getTransactionsIncome();
+    Hive.box<double>('balance').put('bal', Balance.balance);
     box.add(data);
   }
 }

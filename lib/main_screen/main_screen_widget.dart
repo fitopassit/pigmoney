@@ -47,9 +47,19 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColorLight,
-        title: Text(
-          S.of(context).Financial_Report,
-        ),
+        title: ValueListenableBuilder(
+            valueListenable: Hive.box<double>('balance').listenable(),
+            builder: (context, box, _) {
+              return Text(
+                "Баланс: " +
+                    (Hive.box<double>('balance').get('bal') == null
+                        ? "0" + '\₽'
+                        : Hive.box<double>('balance')
+                            .get('bal')!
+                            .toStringAsFixed(1)) +
+                    '\₽',
+              );
+            }),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -166,10 +176,10 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
     return value;
   }
 
-  Box<Data> getBox() {
-    Box<Data> data = _selectedTab == 0
-        ? Boxes.getTransactionsIncome()
-        : Boxes.getTransactionsExpense();
+  Box<DataPie> getBox() {
+    Box<DataPie> data = _selectedTab == 0
+        ? Hive.box<DataPie>('data_income_pie')
+        : Hive.box<DataPie>('data_expense_pie');
     return data;
   }
 
@@ -261,12 +271,30 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
   }
 
   void deleteTransaction(Data data) {
-    // final box = Boxes.getTransactions();
-    // box.delete(transaction.key);
-    // var box = await Hive.openBox('data');
-    // await box.delete();
+    bool isExpense = _selectedTab == 0 ? false : true;
+    final boxPie;
+    if (isExpense == false) {
+      Balance.balance -= data.cost;
+      boxPie = Hive.box<DataPie>('data_income_pie');
+    } else {
+      Balance.balance += data.cost;
+      boxPie = Hive.box<DataPie>('data_expense_pie');
+    }
+    // isExpense == false
+    //     ? Balance.balance -= data.cost
+    //     : Balance.balance += data.cost;
+    for (var transaction in boxPie.values.toList()) {
+      if (transaction.name == data.name) {
+        transaction.cost -= data.cost;
+        transaction.save();
+        if (transaction.cost == 0) {
+          transaction.delete();
+        }
+        break;
+      }
+    }
+    Hive.box<double>('balance').put('bal', Balance.balance);
     data.delete();
-    //setState(() => transactions.remove(transaction));
   }
   // Widget buildSwitch() {
   //   return Switch(

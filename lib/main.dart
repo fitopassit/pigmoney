@@ -21,8 +21,13 @@ void main() async {
   Hive.registerAdapter(DataAdapter());
   await Hive.openBox<Data>('data_expense');
   await Hive.openBox<Data>('data_income');
+  Hive.registerAdapter(DataPieAdapter());
+  await Hive.openBox<DataPie>('data_expense_pie');
+  await Hive.openBox<DataPie>('data_income_pie');
+  //Hive.box<DataPie>('data_income_pie').clear();
+  //Hive.box<DataPie>('data_expense_pie').clear();
   await Hive.openBox<double>('balance');
-  // Hive.box<double>('balance').clear();
+  //Hive.box<double>('balance').clear();
   if (Hive.box<double>('balance').get('bal') == null) {
     Hive.box<double>('balance').put('bal', 0.0);
   }

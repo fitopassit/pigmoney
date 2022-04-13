@@ -1,12 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:hive/hive.dart';
-import 'package:vk/main_screen/money.dart';
 import 'package:flutter/material.dart';
 
 import 'boxes.dart';
 import 'data.dart';
 
-List<PieChartSectionData> getSections(Box<Data> type) => type.values
+List<PieChartSectionData> getSections(Box<DataPie> type) => type.values
     .toList()
     .asMap()
     .map<int, PieChartSectionData>((index, data) {
