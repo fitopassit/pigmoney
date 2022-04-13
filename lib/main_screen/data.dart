@@ -14,3 +14,9 @@ class Data extends HiveObject {
   @HiveField(3)
   late double percent;
 }
+
+@HiveType(typeId: 1)
+class Balance extends HiveObject {
+  @HiveField(0)
+  static double balance = 0;
+}

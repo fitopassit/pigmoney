@@ -255,8 +255,9 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
       ..cost = cost
       ..color = color
       ..percent = percent;
-
+    Balance.balance += cost;
     final box = Boxes.getTransactionsIncome();
+    Hive.box<double>('balance').put('bal', Balance.balance);
     box.add(data);
   }
 }
