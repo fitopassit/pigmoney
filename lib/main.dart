@@ -7,6 +7,7 @@ import 'package:vk/main_screen/expense.dart';
 import 'package:vk/main_screen/add_income_widget.dart';
 import 'package:vk/main_screen/main_screen_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:vk/main_screen/onboarding_screen_page.dart';
 import 'package:vk/theme/theme.dart';
 import 'generated/l10n.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
@@ -32,9 +33,11 @@ void main() async {
     Hive.box<double>('balance').put('bal', 0.0);
   }
   Balance.balance = Hive.box<double>('balance').get('bal')!;
+  final prefs = await SharedPreferences.getInstance();
+  final showHome = prefs.getBool('showHome') ?? false;
   final themeServise = await ThemeService.instance;
   var initTheme = themeServise.initial;
-  runApp(MyApp(theme: initTheme));
+  runApp(MyApp(theme: initTheme, showHome: showHome));
 }
 
 class ThemeService {
@@ -89,10 +92,9 @@ class ThemeService {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    Key? key,
-    required this.theme,
-  }) : super(key: key);
+  final bool showHome;
+  const MyApp({Key? key, required this.theme, required this.showHome})
+      : super(key: key);
   final ThemeData theme;
   // This widget is the root of your application.
   @override
@@ -115,11 +117,12 @@ class MyApp extends StatelessWidget {
               theme: theme,
               routes: {
                 //'/': (context) => AuthWidget(),
+                '/onBoardingScreen': (context) => OnbordingPage(),
                 '/main_screen': (context) => mainScreenWidget(),
                 '/addExpense': (context) => addExpenseWidget(),
                 '/addIncome': (context) => addIncomeWidget(),
               },
-              initialRoute: '/main_screen',
+              initialRoute: showHome ? '/main_screen' : '/onBoardingScreen',
             );
           },
         );

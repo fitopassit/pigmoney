@@ -53,18 +53,11 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
               return Text(
                 "Баланс: " +
                     (Hive.box<double>('balance').get('bal') == null
-<<<<<<< HEAD
                         ? "0" + '\₽'
                         : Hive.box<double>('balance')
                             .get('bal')!
                             .toStringAsFixed(1)) +
                     '\₽',
-=======
-                        ? "0"
-                        : Hive.box<double>('balance')
-                            .get('bal')!
-                            .toStringAsFixed(1)),
->>>>>>> 3ce7ce50cd477f2915cf851b1318b1898284a685
               );
             }),
         centerTitle: true,
