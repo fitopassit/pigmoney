@@ -30,6 +30,7 @@ void main() async {
   // Hive.box<DataPie>('data_income_pie').clear();
   // Hive.box<DataPie>('data_expense_pie').clear();
   await Hive.openBox<double>('balance');
+  // Balance.balance = 0;
   // Hive.box<double>('balance').clear();
   if (Hive.box<double>('balance').get('bal') == null) {
     Hive.box<double>('balance').put('bal', 0.0);

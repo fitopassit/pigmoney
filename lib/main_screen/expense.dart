@@ -303,7 +303,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
       ..percent = percent
       ..date = date
       ..description = description;
-    ;
+
     final dataPie = DataPie()
       ..name = name
       ..cost = cost

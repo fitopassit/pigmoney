@@ -292,6 +292,19 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         DateTime.parse(transaction.date).month.toString() +
         '.' +
         DateTime.parse(transaction.date).year.toString();
+    // List<String> data_income = ["Акции", "Подарки", "Зарплата", "Ещё"];
+    // List<String> data_expense = [
+    //   "Образование",
+    //   "Тренировка",
+    //   "Транспорт",
+    //   "Семья",
+    //   "Продукты",
+    //   "Подарки",
+    //   "Кафе",
+    //   "Ещё"
+    // ];
+    // String dropdownValue = _selectedTab == 0 ? "Акции" : "Образование";
+
     await showDialog(
         context: context,
         builder: (context) {
@@ -307,28 +320,40 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                       SizedBox(
                         width: 40,
                       ),
-                      DropdownButton<String>(
-                        value: dropdownValue,
-                        icon: const Icon(Icons.arrow_downward),
-                        elevation: 16,
-                        //style: const TextStyle(color: Colors.deepPurple),
-                        underline: Container(
-                          height: 2,
-                          color: Theme.of(context).shadowColor,
-                        ),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownValue = newValue!;
-                          });
-                        },
-                        items: <String>['Акции', 'Подарки', 'Зарплата', 'Еще']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
+                      Expanded(
+                          child: TextField(
+                        //controller: cost_controller,
+                        enabled: false,
+                        style: TextStyle(fontSize: 15),
+                        decoration: InputDecoration(
+                            hintText: transaction.name.toString(),
+                            hintStyle: GoogleFonts.lato(
+                              //color: Colors.white,
+                              fontSize: 15,
+                            )),
+                      ))
+                      // DropdownButton<String>(
+                      //   value: dropdownValue,
+                      //   icon: const Icon(Icons.arrow_downward),
+                      //   elevation: 16,
+                      //   //style: const TextStyle(color: Colors.deepPurple),
+                      //   underline: Container(
+                      //     height: 2,
+                      //     color: Theme.of(context).shadowColor,
+                      //   ),
+                      //   onChanged: (String? newValue) {
+                      //     setState(() {
+                      //       dropdownValue = newValue!;
+                      //     });
+                      //   },
+                      //   items: (_selectedTab == 0 ? data_income : data_expense)
+                      //       .map<DropdownMenuItem<String>>((String value) {
+                      //     return DropdownMenuItem<String>(
+                      //       value: value,
+                      //       child: Text(value),
+                      //     );
+                      //   }).toList(),
+                      // ),
                     ],
                   ),
                   Row(
@@ -432,7 +457,6 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                 onPressed: () {
                   editTransaction(
                       transaction,
-                      dropdownValue,
                       double.parse(cost_controller.text),
                       _selectedDate.toString(),
                       description_controller.text.toString());
@@ -517,8 +541,44 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
     data.delete();
   }
 
-  void editTransaction(Data transaction, String category, double cost,
-      String date, String description) {
+  void editTransaction(
+      Data transaction, double cost, String date, String description) {
+    String category = transaction.name;
+    final boxPie = _selectedTab == 0
+        ? Hive.box<DataPie>('data_income_pie')
+        : Hive.box<DataPie>('data_expense_pie');
+    double real_cost = cost - transaction.cost;
+
+    bool check = false;
+    if (transaction.name == category) {
+      for (var data in boxPie.values.toList()) {
+        if (data.name == transaction.name) {
+          data.cost += real_cost;
+          data.save();
+        }
+      }
+    } else {
+      for (var data in boxPie.values.toList()) {
+        if (data.name == transaction.name) {
+          data.cost -= data.cost;
+          data.save();
+        }
+      }
+      for (var data in boxPie.values.toList()) {
+        if (data.name == category) {
+          data.cost += cost;
+          data.save;
+          check = true;
+        }
+      }
+    }
+
+    Balance.balance += _selectedTab == 0 ? real_cost : (-real_cost);
+    Hive.box<double>('balance').put('bal', Balance.balance);
+
+    final box = _selectedTab == 0
+        ? Boxes.getTransactionsIncome()
+        : Boxes.getTransactionsExpense();
     transaction.name = category;
     transaction.cost = cost;
     transaction.date = date;
