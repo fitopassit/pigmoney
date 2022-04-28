@@ -50,201 +50,261 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Expense`
+  /// `Расход`
   String get Expense {
     return Intl.message(
-      'Expense',
+      'Расход',
       name: 'Expense',
       desc: '',
       args: [],
     );
   }
 
-  /// `How much you Expense?`
+  /// `Сколько вы потратили?`
   String get How_Much_Expense {
     return Intl.message(
-      'How much you Expense?',
+      'Сколько вы потратили?',
       name: 'How_Much_Expense',
       desc: '',
       args: [],
     );
   }
 
-  /// `How much you Income?`
+  /// `Сколько вы заработали?`
   String get How_Much_Income {
     return Intl.message(
-      'How much you Income?',
+      'Сколько вы заработали?',
       name: 'How_Much_Income',
       desc: '',
       args: [],
     );
   }
 
-  /// `Income`
+  /// `Доход`
   String get Income {
     return Intl.message(
-      'Income',
+      'Доход',
       name: 'Income',
       desc: '',
       args: [],
     );
   }
 
-  /// `Financial Report`
+  /// `Финансовый отчет`
   String get Financial_Report {
     return Intl.message(
-      'Financial Report',
+      'Финансовый отчет',
       name: 'Financial_Report',
       desc: '',
       args: [],
     );
   }
 
-  /// `Category`
+  /// `Категории`
   String get Category {
     return Intl.message(
-      'Category',
+      'Категории',
       name: 'Category',
       desc: '',
       args: [],
     );
   }
 
-  /// `Flutter Demo`
-  String get Flutter_Demo {
-    return Intl.message(
-      'Flutter Demo',
-      name: 'Flutter_Demo',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Education`
+  /// `Образование`
   String get Category_Education {
     return Intl.message(
-      'Education',
+      'Образование',
       name: 'Category_Education',
       desc: '',
       args: [],
     );
   }
 
-  /// `Workout`
+  /// `Тренировка`
   String get Category_Workout {
     return Intl.message(
-      'Workout',
+      'Тренировка',
       name: 'Category_Workout',
       desc: '',
       args: [],
     );
   }
 
-  /// `Family`
-  String get Category_Family {
-    return Intl.message(
-      'Family',
-      name: 'Category_Family',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Transport`
+  /// `Транспорт`
   String get Category_Transportation {
     return Intl.message(
-      'Transport',
+      'Транспорт',
       name: 'Category_Transportation',
       desc: '',
       args: [],
     );
   }
 
-  /// `Groceries`
+  /// `Семья`
+  String get Category_Family {
+    return Intl.message(
+      'Семья',
+      name: 'Category_Family',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Продукты`
   String get Category_Groceries {
     return Intl.message(
-      'Groceries',
+      'Продукты',
       name: 'Category_Groceries',
       desc: '',
       args: [],
     );
   }
 
-  /// `Gifts`
+  /// `Подарки`
   String get Category_Gifts {
     return Intl.message(
-      'Gifts',
+      'Подарки',
       name: 'Category_Gifts',
       desc: '',
       args: [],
     );
   }
 
-  /// `Cafe`
+  /// `Кафе`
   String get Category_Cafe {
     return Intl.message(
-      'Cafe',
+      'Кафе',
       name: 'Category_Cafe',
       desc: '',
       args: [],
     );
   }
 
-  /// `More`
+  /// `Ещё`
   String get Category_More {
     return Intl.message(
-      'More',
+      'Ещё',
       name: 'Category_More',
       desc: '',
       args: [],
     );
   }
 
-  /// `Description`
+  /// `Описание`
   String get Add_Widget_Description {
     return Intl.message(
-      'Description',
+      'Описание',
       name: 'Add_Widget_Description',
       desc: '',
       args: [],
     );
   }
 
-  /// `Paycheck`
-  String get Category_Paycheck {
-    return Intl.message(
-      'Paycheck',
-      name: 'Category_Paycheck',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Continue`
+  /// `Продолжить`
   String get Add_Widget_Button {
     return Intl.message(
-      'Continue',
+      'Продолжить',
       name: 'Add_Widget_Button',
       desc: '',
       args: [],
     );
   }
 
-  /// `Stock`
+  /// `Зарплата`
+  String get Category_Paycheck {
+    return Intl.message(
+      'Зарплата',
+      name: 'Category_Paycheck',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interest`
+  String get Category_Interest {
+    return Intl.message(
+      'Interest',
+      name: 'Category_Interest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Акции`
   String get Category_Stock {
     return Intl.message(
-      'Stock',
+      'Акции',
       name: 'Category_Stock',
       desc: '',
       args: [],
     );
   }
 
-  /// `Other`
+  /// `Другое`
   String get Category_Other {
     return Intl.message(
-      'Other',
+      'Другое',
       name: 'Category_Other',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Добро пожаловать!`
+  String get Intr_title1 {
+    return Intl.message(
+      'Добро пожаловать!',
+      name: 'Intr_title1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Мы рады рассказать вам о нас!`
+  String get Intr_title2 {
+    return Intl.message(
+      'Мы рады рассказать вам о нас!',
+      name: 'Intr_title2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Спасибо, что выбрали нас!`
+  String get Intr_title3 {
+    return Intl.message(
+      'Спасибо, что выбрали нас!',
+      name: 'Intr_title3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Мы рады видеть вас в нашем приложении!`
+  String get Intr1 {
+    return Intl.message(
+      'Мы рады видеть вас в нашем приложении!',
+      name: 'Intr1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Наш продукт это простой калькулятор расходов, с интуитивно понятным интерфейсом!`
+  String get Intr2 {
+    return Intl.message(
+      'Наш продукт это простой калькулятор расходов, с интуитивно понятным интерфейсом!',
+      name: 'Intr2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Приятного пользования!`
+  String get Intr3 {
+    return Intl.message(
+      'Приятного пользования!',
+      name: 'Intr3',
       desc: '',
       args: [],
     );

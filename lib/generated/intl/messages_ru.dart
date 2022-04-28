@@ -22,30 +22,40 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Add_Widget_Button": MessageLookupByLibrary.simpleMessage("Продолжить"),
+        "Add_Widget_Button": MessageLookupByLibrary.simpleMessage("Continue"),
         "Add_Widget_Description":
-            MessageLookupByLibrary.simpleMessage("Описание"),
-        "Category": MessageLookupByLibrary.simpleMessage("Категории"),
-        "Category_Cafe": MessageLookupByLibrary.simpleMessage("Кафе"),
-        "Category_Education":
-            MessageLookupByLibrary.simpleMessage("Образование"),
-        "Category_Family": MessageLookupByLibrary.simpleMessage("Семья"),
-        "Category_Gifts": MessageLookupByLibrary.simpleMessage("Подарки"),
-        "Category_Groceries": MessageLookupByLibrary.simpleMessage("Продукты"),
-        "Category_More": MessageLookupByLibrary.simpleMessage("Ещё"),
-        "Category_Other": MessageLookupByLibrary.simpleMessage("Другое"),
-        "Category_Paycheck": MessageLookupByLibrary.simpleMessage("Зарплата"),
-        "Category_Stock": MessageLookupByLibrary.simpleMessage("Акции"),
+            MessageLookupByLibrary.simpleMessage("Description"),
+        "Category": MessageLookupByLibrary.simpleMessage("Category"),
+        "Category_Cafe": MessageLookupByLibrary.simpleMessage("Cafe"),
+        "Category_Education": MessageLookupByLibrary.simpleMessage("Education"),
+        "Category_Family": MessageLookupByLibrary.simpleMessage("Family"),
+        "Category_Gifts": MessageLookupByLibrary.simpleMessage("Gifts"),
+        "Category_Groceries": MessageLookupByLibrary.simpleMessage("Groceries"),
+        "Category_More": MessageLookupByLibrary.simpleMessage("More"),
+        "Category_Other": MessageLookupByLibrary.simpleMessage("Other"),
+        "Category_Paycheck": MessageLookupByLibrary.simpleMessage("Paycheck"),
+        "Category_Stock": MessageLookupByLibrary.simpleMessage("Stock"),
         "Category_Transportation":
-            MessageLookupByLibrary.simpleMessage("Транспорт"),
-        "Category_Workout": MessageLookupByLibrary.simpleMessage("Тренировка"),
-        "Expense": MessageLookupByLibrary.simpleMessage("Расход"),
+            MessageLookupByLibrary.simpleMessage("Transport"),
+        "Category_Workout": MessageLookupByLibrary.simpleMessage("Workout"),
+        "Expense": MessageLookupByLibrary.simpleMessage("Expense"),
         "Financial_Report":
-            MessageLookupByLibrary.simpleMessage("Финансовый отчет"),
+            MessageLookupByLibrary.simpleMessage("Financial Report"),
         "How_Much_Expense":
-            MessageLookupByLibrary.simpleMessage("Сколько вы потратили?"),
+            MessageLookupByLibrary.simpleMessage("How much you Expense?"),
         "How_Much_Income":
-            MessageLookupByLibrary.simpleMessage("Сколько вы заработали?"),
-        "Income": MessageLookupByLibrary.simpleMessage("Доход")
+            MessageLookupByLibrary.simpleMessage("How much you Income?"),
+        "Income": MessageLookupByLibrary.simpleMessage("Income"),
+        "Intr1": MessageLookupByLibrary.simpleMessage(
+            "We are happy to see you in our app!"),
+        "Intr2": MessageLookupByLibrary.simpleMessage(
+            "Our product is a simple expense calculator with an intuitive interface!"),
+        "Intr3": MessageLookupByLibrary.simpleMessage("Enjoy your use!"),
+        "Intr_title1":
+            MessageLookupByLibrary.simpleMessage("Welcome to the app!"),
+        "Intr_title2": MessageLookupByLibrary.simpleMessage(
+            "We are happy to tell you about us!"),
+        "Intr_title3":
+            MessageLookupByLibrary.simpleMessage("Thank you for choosing us!")
       };
 }
