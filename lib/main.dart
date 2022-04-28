@@ -123,7 +123,7 @@ class MyApp extends StatelessWidget {
                 '/main_screen': (context) => mainScreenWidget(),
                 '/addExpense': (context) => addExpenseWidget(),
                 '/addIncome': (context) => addIncomeWidget(),
-                '/edit': (context) => editScreen()
+                //'/edit': (context) => editScreen()
               },
               initialRoute: showHome ? '/main_screen' : '/onBoardingScreen',
             );

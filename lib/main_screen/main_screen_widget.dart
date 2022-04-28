@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:vk/main_screen/sections.dart';
@@ -24,6 +25,8 @@ class mainScreenWidget extends StatefulWidget {
 class _mainScreenWidgetState extends State<mainScreenWidget> {
   int _selectedTab = 0;
   String dropdownValue = 'Акции';
+  late DateTime _myDateTime;
+  DateTime _selectedDate = DateTime.now();
   List<Data> sorted_income = Hive.box<Data>('data_income').values.toList();
   void onSelectTab(int index) {
     if (_selectedTab == index) return;
@@ -229,12 +232,17 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         children: [
           SlidableAction(
             onPressed: (BuildContext context) => {
-              Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                      opaque: false,
-                      pageBuilder: (BuildContext context, _, __) =>
-                          editScreen()))
+              // Navigator.push(
+              //     context,
+              //     PageRouteBuilder(
+              //         opaque: false,
+              //         pageBuilder: (BuildContext context, _, __) => editScreen(
+              //               name: data.name,
+              //               cost: data.cost,
+              //               date: data.date,
+              //               description: data.description,
+              //             )))
+              showAlertDialog(context, data)
             },
             backgroundColor: Color(0xFF0392CF),
             foregroundColor: Colors.white,
@@ -273,6 +281,168 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         ),
       ),
     );
+  }
+
+  showAlertDialog(BuildContext context, Data transaction) async {
+    final date_controller = TextEditingController();
+    final description_controller = TextEditingController();
+    final cost_controller = TextEditingController();
+    String hint_date = DateTime.parse(transaction.date).day.toString() +
+        '.' +
+        DateTime.parse(transaction.date).month.toString() +
+        '.' +
+        DateTime.parse(transaction.date).year.toString();
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Center(child: Text('Изменение транзакции')),
+            content: SizedBox(
+              height: 200,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text('Категория: '),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      DropdownButton<String>(
+                        value: dropdownValue,
+                        icon: const Icon(Icons.arrow_downward),
+                        elevation: 16,
+                        //style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 2,
+                          color: Theme.of(context).shadowColor,
+                        ),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue = newValue!;
+                          });
+                        },
+                        items: <String>['Акции', 'Подарки', 'Зарплата', 'Еще']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text('Стоимость:'),
+                      SizedBox(width: 40),
+                      Expanded(
+                          child: TextFormField(
+                        controller: cost_controller,
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                        keyboardType: TextInputType.datetime,
+                        decoration: InputDecoration(
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            hintText: transaction.cost.toString(),
+                            hintStyle: GoogleFonts.lato(
+                              //color: Colors.white,
+                              fontSize: 15,
+                            )),
+                      ))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text('Дата:'),
+                      SizedBox(width: 40),
+                      Expanded(
+                          child: TextFormField(
+                        enabled: false,
+                        //controller: controller,
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                        keyboardType: TextInputType.datetime,
+                        decoration: InputDecoration(
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            hintText: hint_date,
+                            hintStyle: GoogleFonts.lato(
+                              //color: Colors.white,
+                              fontSize: 15,
+                            )),
+                      )),
+                      OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.all(5),
+                            side: BorderSide.none,
+                            shape: CircleBorder(side: BorderSide(width: 1.0)),
+                          ),
+                          onPressed: () async {
+                            _myDateTime = (await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                            ))!;
+                            if (_myDateTime != null &&
+                                _myDateTime != _selectedDate) {
+                              setState(() {
+                                _selectedDate = _myDateTime;
+                              });
+                            }
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(7),
+                            child: Icon(Ionicons.calendar_outline,
+                                color: Color.fromARGB(255, 0, 0, 0), size: 25),
+                          ))
+                    ],
+                  ),
+                  Row(children: [
+                    Text('Описание:'),
+                    SizedBox(width: 20),
+                    Expanded(
+                        child: TextField(
+                      controller: description_controller,
+                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      keyboardType: TextInputType.datetime,
+                      decoration: InputDecoration(
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: transaction.description.toString(),
+                          hintStyle: GoogleFonts.lato(
+                            //color: Colors.white,
+                            fontSize: 15,
+                          )),
+                    ))
+                  ])
+                ],
+              ),
+            ),
+            actions: [
+              FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Отмена'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  editTransaction(
+                      transaction,
+                      dropdownValue,
+                      double.parse(cost_controller.text),
+                      _selectedDate.toString(),
+                      description_controller.text.toString());
+                  Navigator.pop(context);
+                },
+                child: Text('Ок'),
+              ),
+            ],
+          );
+        });
   }
 
   OutlinedButton _addWidget() {
@@ -347,6 +517,15 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
     data.delete();
   }
 
+  void editTransaction(Data transaction, String category, double cost,
+      String date, String description) {
+    transaction.name = category;
+    transaction.cost = cost;
+    transaction.date = date;
+    transaction.description = description;
+    transaction.save();
+  }
+
   // Widget buildSwitch() {
   //   return Switch(
   //       value: isSwitched,
@@ -367,7 +546,17 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
 }
 
 class editScreen extends StatefulWidget {
-  editScreen({Key? key}) : super(key: key);
+  final String name;
+  final double cost;
+  final String date;
+  final String description;
+  editScreen(
+      {Key? key,
+      required this.name,
+      required this.cost,
+      required this.date,
+      required this.description})
+      : super(key: key);
 
   @override
   State<editScreen> createState() => _editScreenState();
@@ -419,7 +608,21 @@ class _editScreenState extends State<editScreen> {
               children: [
                 Text('Стоимость:'),
                 SizedBox(width: 40),
-                Expanded(child: TextField())
+                Expanded(
+                    child: TextField(
+                  //controller: controller,
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                  keyboardType: TextInputType.datetime,
+                  decoration: InputDecoration(
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                      hintText: widget.cost.toString(),
+                      hintStyle: GoogleFonts.lato(
+                        //color: Colors.white,
+                        fontSize: 15,
+                      )),
+                ))
               ],
             ),
             Row(
