@@ -139,7 +139,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                     );
                   }
                   return SizedBox(
-                    height: 35.0.h,
+                    height: 30.0.h,
                     child: ListView.builder(
                         reverse: true,
                         padding: EdgeInsets.all(8),
@@ -363,7 +363,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                       Expanded(
                           child: TextFormField(
                         controller: cost_controller,
-                        style: TextStyle(fontSize: 15, color: Colors.white),
+                        style: TextStyle(fontSize: 15),
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(
@@ -385,7 +385,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                           child: TextFormField(
                         enabled: false,
                         //controller: controller,
-                        style: TextStyle(fontSize: 15, color: Colors.white),
+                        style: TextStyle(fontSize: 15),
                         keyboardType: TextInputType.datetime,
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(
@@ -430,7 +430,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                     Expanded(
                         child: TextField(
                       controller: description_controller,
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      style: TextStyle(fontSize: 15),
                       keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(
                           border: UnderlineInputBorder(

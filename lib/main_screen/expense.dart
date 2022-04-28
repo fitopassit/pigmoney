@@ -246,7 +246,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
     return OutlinedButton(
         style: OutlinedButton.styleFrom(
             backgroundColor: colors[index],
-            minimumSize: Size.square(100),
+            minimumSize: Size.square(80),
             padding: EdgeInsets.all(10),
             side: BorderSide.none),
         onPressed: () {
