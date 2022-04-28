@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../generated/l10n.dart';
 
 class OnbordingPage extends StatefulWidget {
   OnbordingPage({Key? key}) : super(key: key);
@@ -35,18 +36,27 @@ class _OnboardingPageState extends State<OnbordingPage> {
               width: double.infinity,
             ),
             const SizedBox(height: 64),
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.teal.shade700,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
+            Center(
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Colors.teal.shade700,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 24),
             Container(
               padding: const EdgeInsets.symmetric(),
-              child: Text(subtitle, style: const TextStyle(color: Colors.teal)),
+              child: Center(
+                child: Text(
+                  subtitle,
+                  style: const TextStyle(color: Colors.teal),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             )
           ],
         ),
@@ -64,20 +74,20 @@ class _OnboardingPageState extends State<OnbordingPage> {
               buildPage(
                 color: Colors.green.shade100,
                 urlImage: 'assets/pig.png',
-                title: 'Reduce',
-                subtitle: 'Lorem ipsum dolor sit amet',
+                title: S.of(context).Intr_title1,
+                subtitle: S.of(context).Intr1,
               ),
               buildPage(
                 color: Colors.blue.shade100,
-                urlImage: 'assets/pig.png',
-                title: 'Reduce',
-                subtitle: 'Lorem ipsum dolor sit amet',
+                urlImage: 'assets/2.png',
+                title: S.of(context).Intr_title2,
+                subtitle: S.of(context).Intr2,
               ),
               buildPage(
                 color: Colors.orange.shade100,
-                urlImage: 'assets/pig.png',
-                title: 'Reuse',
-                subtitle: 'Lorem ipsum dolor sit amet',
+                urlImage: 'assets/1.png',
+                title: S.of(context).Intr_title3,
+                subtitle: S.of(context).Intr3,
               ),
             ],
           ),
