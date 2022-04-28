@@ -20,15 +20,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(DataAdapter());
-  await Hive.openBox<Data>('data_expense');
   await Hive.openBox<Data>('data_income');
+  await Hive.openBox<Data>('data_expense');
+  // Hive.box<Data>('data_income').clear();
+  // Hive.box<Data>('data_expense').clear();
   Hive.registerAdapter(DataPieAdapter());
   await Hive.openBox<DataPie>('data_expense_pie');
   await Hive.openBox<DataPie>('data_income_pie');
-  //Hive.box<DataPie>('data_income_pie').clear();
-  //Hive.box<DataPie>('data_expense_pie').clear();
+  // Hive.box<DataPie>('data_income_pie').clear();
+  // Hive.box<DataPie>('data_expense_pie').clear();
   await Hive.openBox<double>('balance');
-  //Hive.box<double>('balance').clear();
+  // Hive.box<double>('balance').clear();
   if (Hive.box<double>('balance').get('bal') == null) {
     Hive.box<double>('balance').put('bal', 0.0);
   }
@@ -121,6 +123,7 @@ class MyApp extends StatelessWidget {
                 '/main_screen': (context) => mainScreenWidget(),
                 '/addExpense': (context) => addExpenseWidget(),
                 '/addIncome': (context) => addIncomeWidget(),
+                '/edit': (context) => editScreen()
               },
               initialRoute: showHome ? '/main_screen' : '/onBoardingScreen',
             );

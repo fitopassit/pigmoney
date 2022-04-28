@@ -20,13 +20,15 @@ class DataAdapter extends TypeAdapter<Data> {
       ..name = fields[0] as String
       ..cost = fields[1] as double
       ..color = fields[2] as String
-      ..percent = fields[3] as double;
+      ..percent = fields[3] as double
+      ..date = fields[4] as String
+      ..description = fields[5] as String;
   }
 
   @override
   void write(BinaryWriter writer, Data obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -34,7 +36,11 @@ class DataAdapter extends TypeAdapter<Data> {
       ..writeByte(2)
       ..write(obj.color)
       ..writeByte(3)
-      ..write(obj.percent);
+      ..write(obj.percent)
+      ..writeByte(4)
+      ..write(obj.date)
+      ..writeByte(5)
+      ..write(obj.description);
   }
 
   @override

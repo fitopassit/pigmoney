@@ -13,6 +13,10 @@ class Data extends HiveObject {
   late String color;
   @HiveField(3)
   late double percent;
+  @HiveField(4)
+  late String date;
+  @HiveField(5)
+  late String description;
 }
 
 @HiveType(typeId: 1)

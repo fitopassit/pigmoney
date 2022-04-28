@@ -23,7 +23,8 @@ class mainScreenWidget extends StatefulWidget {
 
 class _mainScreenWidgetState extends State<mainScreenWidget> {
   int _selectedTab = 0;
-
+  String dropdownValue = 'Акции';
+  List<Data> sorted_income = Hive.box<Data>('data_income').values.toList();
   void onSelectTab(int index) {
     if (_selectedTab == index) return;
     setState(() {
@@ -217,6 +218,31 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
           ),
         ],
       ),
+      endActionPane: ActionPane(
+        // A motion is a widget used to control how the pane animates.
+        motion: const ScrollMotion(),
+
+        // A pane can dismiss the Slidable.
+        //dismissible: DismissiblePane(onDismissed: () => {}),
+
+        // All actions are defined in the children parameter.
+        children: [
+          SlidableAction(
+            onPressed: (BuildContext context) => {
+              Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                      opaque: false,
+                      pageBuilder: (BuildContext context, _, __) =>
+                          editScreen()))
+            },
+            backgroundColor: Color(0xFF0392CF),
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            label: 'Edit',
+          ),
+        ],
+      ),
       child: Card(
         color: isExpense == false
             ? Color.fromARGB(255, 43, 148, 106)
@@ -230,6 +256,20 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             cost,
             style: TextStyle(fontSize: 16, color: Colors.white),
           ),
+          children: [
+            // OutlinedButton(
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           PageRouteBuilder(
+            //               opaque: false,
+            //               pageBuilder: (BuildContext context, _, __) =>
+            //                   editScreen()));
+            //     },
+            //     child: Text("Edit",
+            //         style: TextStyle(fontSize: 16, color: Colors.white)),
+            //     style: OutlinedButton.styleFrom(side: BorderSide.none))
+          ],
         ),
       ),
     );
@@ -262,7 +302,17 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           //primary: Theme.of(context).primaryColorLight
         ),
-        onPressed: () {},
+        onPressed: () {
+          if (_selectedTab == 0) {
+            sorted_income = Hive.box<Data>('data_income').values.toList();
+            // List<Data> sorted = Hive.box<Data>('data_income').values.toList();
+            sorted_income.sort((a, b) {
+              int aDate = DateTime.parse(a.date).microsecondsSinceEpoch;
+              int bDate = DateTime.parse(b.date).microsecondsSinceEpoch;
+              return aDate.compareTo(bDate);
+            });
+          }
+        },
         icon: Icon(Ionicons.grid_outline, color: Theme.of(context).shadowColor),
         label: Text(
           S.of(context).Category,
@@ -296,6 +346,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
     Hive.box<double>('balance').put('bal', Balance.balance);
     data.delete();
   }
+
   // Widget buildSwitch() {
   //   return Switch(
   //       value: isSwitched,
@@ -312,4 +363,118 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
   //         });
   //       });
   // }
+
+}
+
+class editScreen extends StatefulWidget {
+  editScreen({Key? key}) : super(key: key);
+
+  @override
+  State<editScreen> createState() => _editScreenState();
+}
+
+class _editScreenState extends State<editScreen> {
+  String dropdownValue = 'Акции';
+  late DateTime _myDateTime;
+  DateTime _selectedDate = DateTime.now();
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Center(child: Text('Изменение транзакции')),
+      content: SizedBox(
+        height: 200,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text('Категория: '),
+                SizedBox(
+                  width: 40,
+                ),
+                DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  //style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Theme.of(context).shadowColor,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: <String>['Акции', 'Подарки', 'Зарплата', 'Еще']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Стоимость:'),
+                SizedBox(width: 40),
+                Expanded(child: TextField())
+              ],
+            ),
+            Row(
+              children: [
+                Text('Дата:'),
+                SizedBox(width: 40),
+                Expanded(child: TextField()),
+                OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      padding: EdgeInsets.all(5),
+                      side: BorderSide.none,
+                      shape: CircleBorder(side: BorderSide(width: 1.0)),
+                    ),
+                    onPressed: () async {
+                      _myDateTime = (await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                      ))!;
+                      if (_myDateTime != null && _myDateTime != _selectedDate) {
+                        setState(() {
+                          _selectedDate = _myDateTime;
+                        });
+                      }
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(7),
+                      child: Icon(Ionicons.calendar_outline,
+                          color: Color.fromARGB(255, 0, 0, 0), size: 25),
+                    ))
+              ],
+            ),
+            Row(children: [
+              Text('Описание:'),
+              SizedBox(width: 20),
+              Expanded(child: TextField())
+            ])
+          ],
+        ),
+      ),
+      actions: [
+        FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Больше'),
+        ),
+        FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Меньше'),
+        ),
+      ],
+    );
+  }
 }

@@ -21,7 +21,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
   //   Hive.box('data_expense').close();
   //   super.dispose();
   // }
-
+  DateTime _selectedDate = DateTime.now();
   late List<Color> colors = [
     Theme.of(context).bottomAppBarColor,
     Theme.of(context).bottomAppBarColor,
@@ -44,6 +44,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
   ];
   late DateTime _myDateTime;
   final controller = TextEditingController();
+  final description_controller = TextEditingController();
   late String col;
   late String category_name;
 
@@ -172,6 +173,7 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: TextField(
+        controller: description_controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey),
@@ -187,8 +189,13 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
       child: OutlinedButton(
         onPressed: () {
-          addTransaction(category_name, double.parse(controller.text), col,
-              double.parse(controller.text) / 100);
+          addTransaction(
+              category_name,
+              double.parse(controller.text),
+              col,
+              double.parse(controller.text) / 100,
+              _selectedDate.toLocal().toString(),
+              description_controller.text.toString());
           Navigator.of(context).pop();
         },
         child: Text(
@@ -222,6 +229,11 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
             firstDate: DateTime(2000),
             lastDate: DateTime(2100),
           ))!;
+          if (_myDateTime != null && _myDateTime != _selectedDate) {
+            setState(() {
+              _selectedDate = _myDateTime;
+            });
+          }
         },
         child: Container(
           padding: EdgeInsets.all(7),
@@ -281,14 +293,17 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
         ));
   }
 
-  Future addTransaction(
-      String name, double cost, String color, double percent) async {
+  Future addTransaction(String name, double cost, String color, double percent,
+      String date, String description) async {
     bool check = false;
     final data = Data()
       ..name = name
       ..cost = cost
       ..color = color
-      ..percent = percent;
+      ..percent = percent
+      ..date = date
+      ..description = description;
+    ;
     final dataPie = DataPie()
       ..name = name
       ..cost = cost

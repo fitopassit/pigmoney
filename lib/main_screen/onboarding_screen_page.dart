@@ -63,19 +63,19 @@ class _OnboardingPageState extends State<OnbordingPage> {
             children: [
               buildPage(
                 color: Colors.green.shade100,
-                urlImage: 'assets/intr1.png',
+                urlImage: 'assets/pig.png',
                 title: 'Reduce',
                 subtitle: 'Lorem ipsum dolor sit amet',
               ),
               buildPage(
                 color: Colors.blue.shade100,
-                urlImage: 'assets/intr2.png',
+                urlImage: 'assets/pig.png',
                 title: 'Reduce',
                 subtitle: 'Lorem ipsum dolor sit amet',
               ),
               buildPage(
                 color: Colors.orange.shade100,
-                urlImage: 'assets/intr3.png',
+                urlImage: 'assets/pig.png',
                 title: 'Reuse',
                 subtitle: 'Lorem ipsum dolor sit amet',
               ),
