@@ -8,6 +8,9 @@ import 'package:vk/main_screen/add_income_widget.dart';
 import 'package:vk/main_screen/main_screen_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vk/main_screen/onboarding_screen_page.dart';
+import 'package:vk/money_box/AddMoneyBox.dart';
+import 'package:vk/money_box/EditMoneyBox.dart';
+import 'package:vk/money_box/MoneyBoxPage.dart';
 import 'package:vk/theme/theme.dart';
 import 'generated/l10n.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
@@ -19,19 +22,28 @@ import 'main_screen/data.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(MoneyBoxAdapter());
+  await Hive.openBox<MoneyBox>('money_box');
+  //Hive.box<MoneyBox>('money_box').clear();
+  await Hive.openBox<double>('balance_money_box');
+  BalanceMoneyBox.balance = 0;
+  if (Hive.box<double>('balance_money_box').get('bal') == null) {
+    Hive.box<double>('balance_money_box').put('bal', 0.0);
+  }
+  BalanceMoneyBox.balance = Hive.box<double>('balance_money_box').get('bal')!;
   Hive.registerAdapter(DataAdapter());
   await Hive.openBox<Data>('data_income');
   await Hive.openBox<Data>('data_expense');
-  // Hive.box<Data>('data_income').clear();
-  // Hive.box<Data>('data_expense').clear();
+  //Hive.box<Data>('data_income').clear();
+  //Hive.box<Data>('data_expense').clear();
   Hive.registerAdapter(DataPieAdapter());
   await Hive.openBox<DataPie>('data_expense_pie');
   await Hive.openBox<DataPie>('data_income_pie');
-  // Hive.box<DataPie>('data_income_pie').clear();
-  // Hive.box<DataPie>('data_expense_pie').clear();
+  //Hive.box<DataPie>('data_income_pie').clear();
+  //Hive.box<DataPie>('data_expense_pie').clear();
   await Hive.openBox<double>('balance');
-  // Balance.balance = 0;
-  // Hive.box<double>('balance').clear();
+  Balance.balance = 0;
+  //Hive.box<double>('balance').clear();
   if (Hive.box<double>('balance').get('bal') == null) {
     Hive.box<double>('balance').put('bal', 0.0);
   }
@@ -124,6 +136,9 @@ class MyApp extends StatelessWidget {
                 '/main_screen': (context) => mainScreenWidget(),
                 '/addExpense': (context) => addExpenseWidget(),
                 '/addIncome': (context) => addIncomeWidget(),
+                '/moneyBox': (context) => moneyBoxPage(),
+                '/addMoneyBox': (context) => addMoneyBoxWidget(),
+                //'/editMoneyBox': (context) => editMoneyBox(),
                 //'/edit': (context) => editScreen()
               },
               initialRoute: showHome ? '/main_screen' : '/onBoardingScreen',

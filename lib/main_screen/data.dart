@@ -36,3 +36,25 @@ class DataPie extends HiveObject {
   @HiveField(3)
   late double percent;
 }
+
+@HiveType(typeId: 3)
+class MoneyBox extends HiveObject {
+  @HiveField(0)
+  late String name;
+  @HiveField(1)
+  late String startDate;
+  @HiveField(2)
+  late double cost;
+  @HiveField(3)
+  late String endDate;
+  @HiveField(4)
+  late double costNow;
+  @HiveField(5)
+  late List<String> moneyBoxIncome;
+}
+
+@HiveType(typeId: 4)
+class BalanceMoneyBox extends HiveObject {
+  @HiveField(0)
+  static double balance = 0;
+}

@@ -68,34 +68,60 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         elevation: 0.0,
       ),
       drawer: Drawer(
-          child: SafeArea(
+          child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SafeArea(
               child: Stack(
-        children: <Widget>[
-          Align(
-            alignment: Alignment.topRight,
-            child: ThemeSwitcher(
-              clipper: const ThemeSwitcherBoxClipper(),
-              builder: (context) {
-                return IconButton(
-                  onPressed: () async {
-                    var themeName = ThemeModelInheritedNotifier.of(context)
-                                .theme
-                                .brightness ==
-                            Brightness.light
-                        ? 'dark'
-                        : 'light';
-                    var service = await ThemeService.instance
-                      ..save(themeName);
-                    var theme = service.getByName(themeName);
-                    ThemeSwitcher.of(context).changeTheme(theme: theme);
+            children: <Widget>[
+              Align(
+                alignment: Alignment.topRight,
+                child: ThemeSwitcher(
+                  clipper: const ThemeSwitcherBoxClipper(),
+                  builder: (context) {
+                    return IconButton(
+                      onPressed: () async {
+                        var themeName = ThemeModelInheritedNotifier.of(context)
+                                    .theme
+                                    .brightness ==
+                                Brightness.light
+                            ? 'dark'
+                            : 'light';
+                        var service = await ThemeService.instance
+                          ..save(themeName);
+                        var theme = service.getByName(themeName);
+                        ThemeSwitcher.of(context).changeTheme(theme: theme);
+                      },
+                      icon: const Icon(Ionicons.moon_outline, size: 25),
+                    );
                   },
-                  icon: const Icon(Ionicons.moon_outline, size: 25),
-                );
-              },
+                ),
+              )
+            ],
+          )),
+          ListTile(
+            leading: const Icon(Ionicons.home_outline, size: 25),
+            title: Text(
+              "Главная",
+              style: TextStyle(fontSize: 16),
             ),
-          )
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/main_screen');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Ionicons.wallet_outline, size: 25),
+            title: Text(
+              "Копилка",
+              style: TextStyle(fontSize: 16),
+            ),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/moneyBox');
+            },
+          ),
         ],
-      ))),
+      )),
       body: Container(
         //color: Theme.of(context).primaryColorLight,
         child: Column(
@@ -138,8 +164,8 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                       child: Text("Nothing there"),
                     );
                   }
-                  return SizedBox(
-                    height: 30.0.h,
+                  return Expanded(
+                    //height: 30.0.h,
                     child: ListView.builder(
                         reverse: true,
                         padding: EdgeInsets.all(8),
@@ -431,7 +457,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                         child: TextField(
                       controller: description_controller,
                       style: TextStyle(fontSize: 15),
-                      keyboardType: TextInputType.datetime,
+                      //keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(
                           border: UnderlineInputBorder(
                             borderSide: BorderSide.none,
