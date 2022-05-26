@@ -112,42 +112,67 @@ class _addExpenseWidgetState extends State<addExpenseWidget> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _categoryButton(S.of(context).Category_Education,
-                                  Colors.pink, Ionicons.school_outline, 0),
-                              _categoryButton(
-                                  S.of(context).Category_Workout,
-                                  Color.fromARGB(255, 56, 230, 192),
-                                  Ionicons.barbell_outline,
-                                  1),
-                              _categoryButton(
-                                  S.of(context).Category_Transportation,
-                                  Colors.blue,
-                                  Ionicons.bus_outline,
-                                  2),
-                              _categoryButton(S.of(context).Category_Family,
-                                  Colors.red, Ionicons.people_outline, 3),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Education,
+                                    Colors.pink,
+                                    Ionicons.school_outline,
+                                    0),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Workout,
+                                    Color.fromARGB(255, 56, 230, 192),
+                                    Ionicons.barbell_outline,
+                                    1),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Transportation,
+                                    Colors.blue,
+                                    Ionicons.bus_outline,
+                                    2),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Family,
+                                    Colors.red,
+                                    Ionicons.people_outline,
+                                    3),
+                              ),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _categoryButton(S.of(context).Category_Groceries,
-                                  Colors.orange, Ionicons.basket_outline, 4),
-                              _categoryButton(
-                                  S.of(context).Category_Gifts,
-                                  Color.fromARGB(255, 203, 5, 238),
-                                  Ionicons.gift_outline,
-                                  5),
-                              _categoryButton(
-                                  S.of(context).Category_Cafe,
-                                  Color.fromARGB(255, 0, 199, 106),
-                                  Ionicons.cafe_outline,
-                                  6),
-                              _categoryButton(
-                                  S.of(context).Category_More,
-                                  Color.fromARGB(255, 247, 7, 207),
-                                  Ionicons.ellipsis_horizontal_outline,
-                                  7),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Groceries,
+                                    Colors.orange,
+                                    Ionicons.basket_outline,
+                                    4),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Gifts,
+                                    Color.fromARGB(255, 203, 5, 238),
+                                    Ionicons.gift_outline,
+                                    5),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Cafe,
+                                    Color.fromARGB(255, 0, 199, 106),
+                                    Ionicons.cafe_outline,
+                                    6),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_More,
+                                    Color.fromARGB(255, 247, 7, 207),
+                                    Ionicons.ellipsis_horizontal_outline,
+                                    7),
+                              ),
                             ],
                           ),
                           SizedBox(height: 20),

@@ -46,6 +46,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
   TextEditingController endDate = new TextEditingController();
   TextEditingController incomeMoneyBox = new TextEditingController();
   TextEditingController expenseMoneyBox = new TextEditingController();
+  late bool deleted;
   @override
   void initState() {
     // TODO: implement initState
@@ -69,14 +70,12 @@ class _editMoneyBoxState extends State<editMoneyBox> {
         elevation: 0.0,
         actions: [
           IconButton(
-              onPressed: () {
-                Balance.balance += widget.moneyBox.costNow;
-                Hive.box<double>('balance').put('bal', Balance.balance);
-                BalanceMoneyBox.balance -= widget.moneyBox.costNow;
-                Hive.box<double>('balance_money_box')
-                    .put('bal', BalanceMoneyBox.balance);
-                widget.moneyBox.delete();
-                Navigator.of(context).pop();
+              onPressed: () async {
+                await showDeleteAlertDialog(context);
+                if (deleted == true) {
+                  Navigator.of(context).pop();
+                }
+                //Navigator.of(context).pop();
               },
               icon: Icon(Ionicons.trash_outline, size: 25))
         ],
@@ -386,6 +385,43 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                   Navigator.pop(context);
                 },
                 child: Text('Ок'),
+              ),
+            ],
+          );
+        });
+  }
+
+  showDeleteAlertDialog(BuildContext context) async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title:
+                Center(child: Text('Вы действительно хотите удалить копилку?')),
+            actions: [
+              FlatButton(
+                onPressed: () {
+                  setState(() {
+                    deleted = true;
+                    Balance.balance += widget.moneyBox.costNow;
+                    Hive.box<double>('balance').put('bal', Balance.balance);
+                    BalanceMoneyBox.balance -= widget.moneyBox.costNow;
+                    Hive.box<double>('balance_money_box')
+                        .put('bal', BalanceMoneyBox.balance);
+                    widget.moneyBox.delete();
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('Да'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  setState(() {
+                    deleted = false;
+                  });
+                  Navigator.pop(context);
+                },
+                child: Text('Нет'),
               ),
             ],
           );

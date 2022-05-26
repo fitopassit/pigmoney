@@ -15,6 +15,7 @@ import 'package:vk/theme/theme.dart';
 import 'generated/l10n.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter/services.dart';
 
 import 'main_screen/data.dart';
 //import 'package:theme_provider/theme_provider.dart';
@@ -52,6 +53,10 @@ void main() async {
   final showHome = prefs.getBool('showHome') ?? false;
   final themeServise = await ThemeService.instance;
   var initTheme = themeServise.initial;
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(MyApp(theme: initTheme, showHome: showHome));
 }
 
