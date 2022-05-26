@@ -102,20 +102,34 @@ class _addIncomeWidgetState extends State<addIncomeWidget> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _categoryButton(S.of(context).Category_Stock,
-                                  Colors.pink, Ionicons.analytics_outline, 0),
-                              _categoryButton(S.of(context).Category_Gifts,
-                                  Colors.blue, Ionicons.gift_outline, 1),
-                              _categoryButton(
-                                  S.of(context).Category_Paycheck,
-                                  Color.fromARGB(255, 56, 230, 192),
-                                  Ionicons.cash_outline,
-                                  2),
-                              _categoryButton(
-                                  S.of(context).Category_More,
-                                  Color.fromARGB(255, 247, 7, 207),
-                                  Ionicons.ellipsis_horizontal_outline,
-                                  3),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Stock,
+                                    Colors.pink,
+                                    Ionicons.analytics_outline,
+                                    0),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Gifts,
+                                    Colors.blue,
+                                    Ionicons.gift_outline,
+                                    1),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_Paycheck,
+                                    Color.fromARGB(255, 56, 230, 192),
+                                    Ionicons.cash_outline,
+                                    2),
+                              ),
+                              SafeArea(
+                                child: _categoryButton(
+                                    S.of(context).Category_More,
+                                    Color.fromARGB(255, 247, 7, 207),
+                                    Ionicons.ellipsis_horizontal_outline,
+                                    3),
+                              ),
                             ],
                           ),
                           SizedBox(height: 20),
