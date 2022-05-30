@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "How_Much_Income":
             MessageLookupByLibrary.simpleMessage("How much you Income?"),
         "Income": MessageLookupByLibrary.simpleMessage("Income"),
+        "Info": MessageLookupByLibrary.simpleMessage("Info"),
         "Intr1": MessageLookupByLibrary.simpleMessage(
             "We are happy to see you in our app!"),
         "Intr2": MessageLookupByLibrary.simpleMessage(

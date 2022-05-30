@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "How_Much_Income":
             MessageLookupByLibrary.simpleMessage("Сколько вы заработали?"),
         "Income": MessageLookupByLibrary.simpleMessage("Доход"),
+        "Info": MessageLookupByLibrary.simpleMessage("Информация"),
         "Intr1": MessageLookupByLibrary.simpleMessage(
             "Мы рады видеть вас в нашем приложении!"),
         "Intr2": MessageLookupByLibrary.simpleMessage(

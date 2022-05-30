@@ -270,8 +270,8 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             },
             backgroundColor: Color(0xFF0392CF),
             foregroundColor: Colors.white,
-            icon: Icons.edit,
-            label: 'Edit',
+            icon: Icons.info,
+            label: S.of(context).Info,
           ),
         ],
       ),
@@ -386,6 +386,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                       SizedBox(width: 40),
                       Expanded(
                           child: TextFormField(
+                        enabled: false,
                         controller: cost_controller,
                         style: TextStyle(fontSize: 15),
                         keyboardType: TextInputType.datetime,
@@ -421,31 +422,6 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                               fontSize: 15,
                             )),
                       )),
-                      OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            padding: EdgeInsets.all(5),
-                            side: BorderSide.none,
-                            shape: CircleBorder(side: BorderSide(width: 1.0)),
-                          ),
-                          onPressed: () async {
-                            _myDateTime = (await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2100),
-                            ))!;
-                            if (_myDateTime != null &&
-                                _myDateTime != _selectedDate) {
-                              setState(() {
-                                _selectedDate = _myDateTime;
-                              });
-                            }
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(7),
-                            child: Icon(Ionicons.calendar_outline,
-                                color: Color.fromARGB(255, 0, 0, 0), size: 25),
-                          ))
                     ],
                   ),
                   Row(children: [
@@ -453,6 +429,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                     SizedBox(width: 20),
                     Expanded(
                         child: TextField(
+                      enabled: false,
                       controller: description_controller,
                       style: TextStyle(fontSize: 15),
                       //keyboardType: TextInputType.datetime,
@@ -629,12 +606,12 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
 
 }
 
-class editScreen extends StatefulWidget {
+class InfoScreen extends StatefulWidget {
   final String name;
   final double cost;
   final String date;
   final String description;
-  editScreen(
+  InfoScreen(
       {Key? key,
       required this.name,
       required this.cost,
@@ -643,10 +620,10 @@ class editScreen extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<editScreen> createState() => _editScreenState();
+  State<InfoScreen> createState() => _InfoScreenState();
 }
 
-class _editScreenState extends State<editScreen> {
+class _InfoScreenState extends State<InfoScreen> {
   String dropdownValue = 'Акции';
   late DateTime _myDateTime;
   DateTime _selectedDate = DateTime.now();
@@ -699,6 +676,7 @@ class _editScreenState extends State<editScreen> {
                 Expanded(
                     child: TextField(
                   //controller: controller,
+                  enabled: false,
                   style: TextStyle(fontSize: 15, color: Colors.white),
                   keyboardType: TextInputType.datetime,
                   decoration: InputDecoration(
@@ -717,37 +695,19 @@ class _editScreenState extends State<editScreen> {
               children: [
                 Text(S.of(context).Date),
                 SizedBox(width: 40),
-                Expanded(child: TextField()),
-                OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.all(5),
-                      side: BorderSide.none,
-                      shape: CircleBorder(side: BorderSide(width: 1.0)),
-                    ),
-                    onPressed: () async {
-                      _myDateTime = (await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2100),
-                      ))!;
-                      if (_myDateTime != null && _myDateTime != _selectedDate) {
-                        setState(() {
-                          _selectedDate = _myDateTime;
-                        });
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(7),
-                      child: Icon(Ionicons.calendar_outline,
-                          color: Color.fromARGB(255, 0, 0, 0), size: 25),
-                    ))
+                Expanded(
+                    child: TextField(
+                  enabled: false,
+                )),
               ],
             ),
             Row(children: [
-              Text('Описание:'),
+              Text(S.of(context).Description),
               SizedBox(width: 20),
-              Expanded(child: TextField())
+              Expanded(
+                  child: TextField(
+                enabled: false,
+              ))
             ])
           ],
         ),
