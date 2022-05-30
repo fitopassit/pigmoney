@@ -14,6 +14,7 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vk/main_screen/data.dart';
+import '../generated/l10n.dart';
 
 class addMoneyBoxWidget extends StatefulWidget {
   addMoneyBoxWidget({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _addMoneyBoxWidgetState extends State<addMoneyBoxWidget> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColorLight,
-        title: Text('Новая копилка'),
+        title: Text(S.of(context).New_money),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -51,7 +52,7 @@ class _addMoneyBoxWidgetState extends State<addMoneyBoxWidget> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15)),
-                      hintText: "Введите название копилки",
+                      hintText: S.of(context).Enter_name_money,
                       hintStyle: GoogleFonts.lato(
                         //color: Colors.white,
                         fontSize: 20,
@@ -62,7 +63,7 @@ class _addMoneyBoxWidgetState extends State<addMoneyBoxWidget> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
                 child: Text(
-                  "Дата создания",
+                  S.of(context).Date_create_pig,
                   style: GoogleFonts.lato(fontSize: 15),
                 ),
               ),
@@ -128,7 +129,7 @@ class _addMoneyBoxWidgetState extends State<addMoneyBoxWidget> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
                 child: Text(
-                  "Цель и желаемая дата ее достижения",
+                  S.of(context).Goal_data,
                   style: GoogleFonts.lato(fontSize: 15),
                 ),
               ),
@@ -231,7 +232,7 @@ class _addMoneyBoxWidgetState extends State<addMoneyBoxWidget> {
                     _selectedDateEnd.toString());
                 Navigator.of(context).pop();
               },
-              child: Text("Продолжить",
+              child: Text(S.of(context).Add_Widget_Button,
                   style: GoogleFonts.lato(fontSize: 18, color: Colors.white)),
               style: OutlinedButton.styleFrom(
                 minimumSize: Size(double.infinity, 50),

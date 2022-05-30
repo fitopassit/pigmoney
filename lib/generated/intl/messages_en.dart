@@ -25,6 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add_Widget_Button": MessageLookupByLibrary.simpleMessage("Continue"),
         "Add_Widget_Description":
             MessageLookupByLibrary.simpleMessage("Description"),
+        "Added": MessageLookupByLibrary.simpleMessage("Added"),
+        "Adding_in_Pig":
+            MessageLookupByLibrary.simpleMessage("Adding to the piggy bank"),
+        "Balance": MessageLookupByLibrary.simpleMessage("Balance: "),
+        "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "Category": MessageLookupByLibrary.simpleMessage("Category"),
         "Category_Cafe": MessageLookupByLibrary.simpleMessage("Cafe"),
         "Category_Education": MessageLookupByLibrary.simpleMessage("Education"),
@@ -38,10 +43,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "Category_Transportation":
             MessageLookupByLibrary.simpleMessage("Transport"),
         "Category_Workout": MessageLookupByLibrary.simpleMessage("Workout"),
+        "Category_one": MessageLookupByLibrary.simpleMessage("Category: "),
+        "Change_Transaction":
+            MessageLookupByLibrary.simpleMessage("Change Transaction"),
+        "Collected": MessageLookupByLibrary.simpleMessage("Collected"),
+        "Cost": MessageLookupByLibrary.simpleMessage("Cost:"),
+        "Date": MessageLookupByLibrary.simpleMessage("Date:"),
+        "Date_create_pig":
+            MessageLookupByLibrary.simpleMessage("Date of creation"),
+        "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "Description": MessageLookupByLibrary.simpleMessage("Description:"),
+        "Enter_name_money": MessageLookupByLibrary.simpleMessage(
+            "Enter the name of the piggy bank"),
         "Expense": MessageLookupByLibrary.simpleMessage("Expense"),
         "Financial_Report":
             MessageLookupByLibrary.simpleMessage("Financial Report"),
         "Flutter_Demo": MessageLookupByLibrary.simpleMessage("Flutter Demo"),
+        "Get_Started": MessageLookupByLibrary.simpleMessage("Get Started"),
+        "Goal": MessageLookupByLibrary.simpleMessage("Goal:"),
+        "Goal_data": MessageLookupByLibrary.simpleMessage(
+            "The goal and the desired date of its achievement."),
+        "History": MessageLookupByLibrary.simpleMessage("History"),
+        "History_trans":
+            MessageLookupByLibrary.simpleMessage("Transaction History"),
         "How_Much_Expense":
             MessageLookupByLibrary.simpleMessage("How much you Expense?"),
         "How_Much_Income":
@@ -57,6 +81,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "Intr_title2": MessageLookupByLibrary.simpleMessage(
             "We are happy to tell you about us!"),
         "Intr_title3":
-            MessageLookupByLibrary.simpleMessage("Thank you for choosing us!")
+            MessageLookupByLibrary.simpleMessage("Thank you for choosing us!"),
+        "Less": MessageLookupByLibrary.simpleMessage("Less"),
+        "Main": MessageLookupByLibrary.simpleMessage("Main"),
+        "More": MessageLookupByLibrary.simpleMessage("More"),
+        "New_money": MessageLookupByLibrary.simpleMessage("New money"),
+        "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "No": MessageLookupByLibrary.simpleMessage("No"),
+        "Nothing_there":
+            MessageLookupByLibrary.simpleMessage("Nothing there😞"),
+        "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "Piggy_add": MessageLookupByLibrary.simpleMessage(
+            "How much do you want to put in the piggy bank?"),
+        "Piggy_bank": MessageLookupByLibrary.simpleMessage("Piggy bank"),
+        "Piggy_banks": MessageLookupByLibrary.simpleMessage("Piggy banks"),
+        "Piggy_delete": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to delete the piggy bank?"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "Taken": MessageLookupByLibrary.simpleMessage("Retrieved from"),
+        "Taking_from_the_piggy": MessageLookupByLibrary.simpleMessage(
+            "How much do you want to take from the piggy bank?"),
+        "Total_in_piggy":
+            MessageLookupByLibrary.simpleMessage("Total in piggy banks:"),
+        "Yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

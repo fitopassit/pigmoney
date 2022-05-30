@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
 import '../generated/l10n.dart';
 import 'boxes.dart';
 import 'data.dart';

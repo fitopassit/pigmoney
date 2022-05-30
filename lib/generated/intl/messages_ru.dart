@@ -25,6 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add_Widget_Button": MessageLookupByLibrary.simpleMessage("Продолжить"),
         "Add_Widget_Description":
             MessageLookupByLibrary.simpleMessage("Описание"),
+        "Added": MessageLookupByLibrary.simpleMessage("Добавлено"),
+        "Adding_in_Pig":
+            MessageLookupByLibrary.simpleMessage("Добавление в копилку"),
+        "Balance": MessageLookupByLibrary.simpleMessage("Баланс: "),
+        "Cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "Category": MessageLookupByLibrary.simpleMessage("Категории"),
         "Category_Cafe": MessageLookupByLibrary.simpleMessage("Кафе"),
         "Category_Education":
@@ -39,9 +44,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "Category_Transportation":
             MessageLookupByLibrary.simpleMessage("Транспорт"),
         "Category_Workout": MessageLookupByLibrary.simpleMessage("Тренировка"),
+        "Category_one": MessageLookupByLibrary.simpleMessage("Категория: "),
+        "Change_Transaction":
+            MessageLookupByLibrary.simpleMessage("Изменение транзакции"),
+        "Collected": MessageLookupByLibrary.simpleMessage("Собрано:"),
+        "Cost": MessageLookupByLibrary.simpleMessage("Стоимость:"),
+        "Date": MessageLookupByLibrary.simpleMessage("Дата:"),
+        "Date_create_pig":
+            MessageLookupByLibrary.simpleMessage("Дата создания"),
+        "Delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "Description": MessageLookupByLibrary.simpleMessage("Описание:"),
+        "Enter_name_money":
+            MessageLookupByLibrary.simpleMessage("Введите название копилки"),
         "Expense": MessageLookupByLibrary.simpleMessage("Расход"),
         "Financial_Report":
             MessageLookupByLibrary.simpleMessage("Финансовый отчет"),
+        "Get_Started": MessageLookupByLibrary.simpleMessage("Начать"),
+        "Goal": MessageLookupByLibrary.simpleMessage("Цель:"),
+        "Goal_data": MessageLookupByLibrary.simpleMessage(
+            "Цель и желаемая дата ее достижения"),
+        "History": MessageLookupByLibrary.simpleMessage("История"),
+        "History_trans":
+            MessageLookupByLibrary.simpleMessage("История транзакций"),
         "How_Much_Expense":
             MessageLookupByLibrary.simpleMessage("Сколько вы потратили?"),
         "How_Much_Income":
@@ -57,6 +81,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "Intr_title2": MessageLookupByLibrary.simpleMessage(
             "Мы рады рассказать вам о нас!"),
         "Intr_title3":
-            MessageLookupByLibrary.simpleMessage("Спасибо, что выбрали нас!")
+            MessageLookupByLibrary.simpleMessage("Спасибо, что выбрали нас!"),
+        "Less": MessageLookupByLibrary.simpleMessage("Меньше"),
+        "Main": MessageLookupByLibrary.simpleMessage("Главная"),
+        "More": MessageLookupByLibrary.simpleMessage("Больше"),
+        "New_money": MessageLookupByLibrary.simpleMessage("Новая копилка"),
+        "Next": MessageLookupByLibrary.simpleMessage("Продолжить"),
+        "No": MessageLookupByLibrary.simpleMessage("Нет"),
+        "Nothing_there":
+            MessageLookupByLibrary.simpleMessage("Здесь пока пусто😞"),
+        "Ok": MessageLookupByLibrary.simpleMessage("Ок"),
+        "Piggy_add": MessageLookupByLibrary.simpleMessage(
+            "Сколько вы хотите положить в копилку?"),
+        "Piggy_bank": MessageLookupByLibrary.simpleMessage("Копилка"),
+        "Piggy_banks": MessageLookupByLibrary.simpleMessage("Копилки"),
+        "Piggy_delete": MessageLookupByLibrary.simpleMessage(
+            "Вы действительно хотите удалить копилку?"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Пропустить"),
+        "Taken": MessageLookupByLibrary.simpleMessage("Взято"),
+        "Taking_from_the_piggy": MessageLookupByLibrary.simpleMessage(
+            "Сколько вы хотите взять из копилки?"),
+        "Total_in_piggy":
+            MessageLookupByLibrary.simpleMessage("Всего в копилках:"),
+        "Yes": MessageLookupByLibrary.simpleMessage("Да")
       };
 }

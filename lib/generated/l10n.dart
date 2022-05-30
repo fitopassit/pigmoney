@@ -309,6 +309,356 @@ class S {
       args: [],
     );
   }
+
+  /// `New money`
+  String get New_money {
+    return Intl.message(
+      'New money',
+      name: 'New_money',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the name of the piggy bank`
+  String get Enter_name_money {
+    return Intl.message(
+      'Enter the name of the piggy bank',
+      name: 'Enter_name_money',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The goal and the desired date of its achievement.`
+  String get Goal_data {
+    return Intl.message(
+      'The goal and the desired date of its achievement.',
+      name: 'Goal_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get Next {
+    return Intl.message(
+      'Next',
+      name: 'Next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get History {
+    return Intl.message(
+      'History',
+      name: 'History',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction History`
+  String get History_trans {
+    return Intl.message(
+      'Transaction History',
+      name: 'History_trans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adding to the piggy bank`
+  String get Adding_in_Pig {
+    return Intl.message(
+      'Adding to the piggy bank',
+      name: 'Adding_in_Pig',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much do you want to take from the piggy bank?`
+  String get Taking_from_the_piggy {
+    return Intl.message(
+      'How much do you want to take from the piggy bank?',
+      name: 'Taking_from_the_piggy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retrieved from`
+  String get Taken {
+    return Intl.message(
+      'Retrieved from',
+      name: 'Taken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Added`
+  String get Added {
+    return Intl.message(
+      'Added',
+      name: 'Added',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Piggy banks`
+  String get Piggy_banks {
+    return Intl.message(
+      'Piggy banks',
+      name: 'Piggy_banks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main`
+  String get Main {
+    return Intl.message(
+      'Main',
+      name: 'Main',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Piggy bank`
+  String get Piggy_bank {
+    return Intl.message(
+      'Piggy bank',
+      name: 'Piggy_bank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total in piggy banks:`
+  String get Total_in_piggy {
+    return Intl.message(
+      'Total in piggy banks:',
+      name: 'Total_in_piggy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Goal:`
+  String get Goal {
+    return Intl.message(
+      'Goal:',
+      name: 'Goal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Collected`
+  String get Collected {
+    return Intl.message(
+      'Collected',
+      name: 'Collected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get Cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'Cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much do you want to put in the piggy bank?`
+  String get Piggy_add {
+    return Intl.message(
+      'How much do you want to put in the piggy bank?',
+      name: 'Piggy_add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of creation`
+  String get Date_create_pig {
+    return Intl.message(
+      'Date of creation',
+      name: 'Date_create_pig',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nothing there😞`
+  String get Nothing_there {
+    return Intl.message(
+      'Nothing there😞',
+      name: 'Nothing_there',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the piggy bank?`
+  String get Piggy_delete {
+    return Intl.message(
+      'Do you really want to delete the piggy bank?',
+      name: 'Piggy_delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get Yes {
+    return Intl.message(
+      'Yes',
+      name: 'Yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get No {
+    return Intl.message(
+      'No',
+      name: 'No',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get Ok {
+    return Intl.message(
+      'Ok',
+      name: 'Ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get Delete {
+    return Intl.message(
+      'Delete',
+      name: 'Delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Transaction`
+  String get Change_Transaction {
+    return Intl.message(
+      'Change Transaction',
+      name: 'Change_Transaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category: `
+  String get Category_one {
+    return Intl.message(
+      'Category: ',
+      name: 'Category_one',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cost:`
+  String get Cost {
+    return Intl.message(
+      'Cost:',
+      name: 'Cost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date:`
+  String get Date {
+    return Intl.message(
+      'Date:',
+      name: 'Date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description:`
+  String get Description {
+    return Intl.message(
+      'Description:',
+      name: 'Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More`
+  String get More {
+    return Intl.message(
+      'More',
+      name: 'More',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Less`
+  String get Less {
+    return Intl.message(
+      'Less',
+      name: 'Less',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Started`
+  String get Get_Started {
+    return Intl.message(
+      'Get Started',
+      name: 'Get_Started',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get Skip {
+    return Intl.message(
+      'Skip',
+      name: 'Skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance: `
+  String get Balance {
+    return Intl.message(
+      'Balance: ',
+      name: 'Balance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

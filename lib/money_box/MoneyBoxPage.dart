@@ -1,35 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sizer/sizer.dart';
-import 'package:vk/main_screen/expense.dart';
-import 'package:vk/main_screen/add_income_widget.dart';
-import 'package:vk/main_screen/main_screen_widget.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:vk/main_screen/onboarding_screen_page.dart';
-import 'package:vk/theme/theme.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vk/main_screen/data.dart';
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/rendering.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hive/hive.dart';
-import 'package:vk/main_screen/sections.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:sizer/sizer.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import '../generated/l10n.dart';
 import '../main.dart';
-import 'data.dart';
-
 import 'EditMoneyBox.dart';
 
 class moneyBoxPage extends StatefulWidget {
@@ -45,7 +21,7 @@ class _moneyBoxPageState extends State<moneyBoxPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColorLight,
-        title: Text('Копилки'),
+        title: Text(S.of(context).Piggy_banks),
         centerTitle: true,
         elevation: 0.0,
         actions: [
@@ -92,7 +68,7 @@ class _moneyBoxPageState extends State<moneyBoxPage> {
           ListTile(
             leading: const Icon(Ionicons.home_outline, size: 25),
             title: Text(
-              "Главная",
+              S.of(context).Main,
               style: TextStyle(fontSize: 16),
             ),
             onTap: () {
@@ -102,7 +78,7 @@ class _moneyBoxPageState extends State<moneyBoxPage> {
           ListTile(
             leading: const Icon(Ionicons.wallet_outline, size: 25),
             title: Text(
-              "Копилка",
+              S.of(context).Piggy_bank,
               style: TextStyle(fontSize: 16),
             ),
             onTap: () {
@@ -151,7 +127,8 @@ class _moneyBoxPageState extends State<moneyBoxPage> {
                       valueListenable:
                           Hive.box<double>('balance_money_box').listenable(),
                       builder: (context, box, _) {
-                        return Text("Всего в копилках:\n" +
+                        return Text(S.of(context).Total_in_piggy +
+                            "\n" +
                             (Hive.box<double>('balance_money_box').get('bal') ==
                                     null
                                 ? "0"
@@ -190,7 +167,7 @@ class _moneyBoxPageState extends State<moneyBoxPage> {
                   final boxes = box.values.toList().cast<MoneyBox>();
                   if (boxes.isEmpty) {
                     return Center(
-                      child: Text("Nothing there"),
+                      child: Text(S.of(context).Nothing_there),
                     );
                   }
                   return Expanded(
@@ -233,13 +210,14 @@ class _moneyBoxPageState extends State<moneyBoxPage> {
           Row(
             children: [
               Expanded(
-                child: Text("Собрано: " + cost_now.toStringAsFixed(2),
+                child: Text(
+                    S.of(context).Collected + cost_now.toStringAsFixed(2),
                     style: GoogleFonts.lato(fontSize: 16)),
               ),
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomRight,
-                  child: Text("Цель: " + cost.toString()),
+                  child: Text(S.of(context).Goal + cost.toString()),
                 ),
               )
             ],

@@ -15,6 +15,8 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vk/main_screen/data.dart';
 
+import '../generated/l10n.dart';
+
 class editMoneyBox extends StatefulWidget {
   // final String name;
   // final String start_date;
@@ -65,7 +67,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColorLight,
-        title: Text("История транзакций"),
+        title: Text(S.of(context).History_trans),
         centerTitle: true,
         elevation: 0.0,
         actions: [
@@ -152,7 +154,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
             child: Padding(
               padding: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
               child: Text(
-                "Цель и желаемая дата ее достижения",
+                S.of(context).Goal_data,
                 style: GoogleFonts.lato(fontSize: 15),
               ),
             ),
@@ -234,7 +236,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
           ),
           Center(
               child: Text(
-            "История",
+            S.of(context).History,
             style: GoogleFonts.lato(fontSize: 18),
           )),
           ValueListenableBuilder<List<String>>(
@@ -245,7 +247,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                 final data = widget.moneyBox.moneyBoxIncome;
                 if (data.isEmpty) {
                   return Center(
-                    child: Text("Nothing there"),
+                    child: Text(S.of(context).Nothing_there),
                   );
                 }
                 return Expanded(
@@ -270,14 +272,14 @@ class _editMoneyBoxState extends State<editMoneyBox> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Center(child: Text('Добавлление в копилку')),
+            title: Center(child: Text(S.of(context).Adding_in_Pig)),
             content: SizedBox(
               height: 150,
               child: Column(
                 children: [
                   Align(
                       alignment: Alignment.topLeft,
-                      child: Text("Сколько вы хотите взять из копилки?",
+                      child: Text(S.of(context).Taking_from_the_piggy,
                           style: GoogleFonts.lato(fontSize: 15))),
                   SizedBox(height: 10),
                   Align(
@@ -304,7 +306,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Отмена'),
+                child: Text(S.of(context).Cancel),
               ),
               FlatButton(
                 onPressed: () {
@@ -321,7 +323,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                   });
                   Navigator.pop(context);
                 },
-                child: Text('Ок'),
+                child: Text(S.of(context).Ok),
               ),
             ],
           );
@@ -333,14 +335,14 @@ class _editMoneyBoxState extends State<editMoneyBox> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Center(child: Text('Добавлление в копилку')),
+            title: Center(child: Text(S.of(context).Adding_in_Pig)),
             content: SizedBox(
               height: 150,
               child: Column(
                 children: [
                   Align(
                       alignment: Alignment.topLeft,
-                      child: Text("Сколько вы хотите положить в копилку?",
+                      child: Text(S.of(context).Piggy_add,
                           style: GoogleFonts.lato(fontSize: 15))),
                   SizedBox(height: 10),
                   Align(
@@ -367,7 +369,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Отмена'),
+                child: Text(S.of(context).Cancel),
               ),
               FlatButton(
                 onPressed: () {
@@ -384,7 +386,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                   });
                   Navigator.pop(context);
                 },
-                child: Text('Ок'),
+                child: Text(S.of(context).Ok),
               ),
             ],
           );
@@ -396,8 +398,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title:
-                Center(child: Text('Вы действительно хотите удалить копилку?')),
+            title: Center(child: Text(S.of(context).Piggy_delete)),
             actions: [
               FlatButton(
                 onPressed: () {
@@ -412,7 +413,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                   });
                   Navigator.pop(context);
                 },
-                child: Text('Да'),
+                child: Text(S.of(context).Yes),
               ),
               FlatButton(
                 onPressed: () {
@@ -421,7 +422,7 @@ class _editMoneyBoxState extends State<editMoneyBox> {
                   });
                   Navigator.pop(context);
                 },
-                child: Text('Нет'),
+                child: Text(S.of(context).No),
               ),
             ],
           );
@@ -440,8 +441,8 @@ class _editMoneyBoxState extends State<editMoneyBox> {
     var trans = datas.split(', ');
     final name = trans[0];
     final cost = double.parse(trans[1]);
-    bool isExpense = name == "Expense" ? true : false;
-    String titl = isExpense == true ? "Взято" : "Добавлено";
+    bool isExpense = name == S.of(context).Expense ? true : false;
+    String titl = isExpense == true ? S.of(context).Taken : S.of(context).Added;
     String sign = isExpense == true ? '-' : '+';
     return Card(
       color: isExpense == false

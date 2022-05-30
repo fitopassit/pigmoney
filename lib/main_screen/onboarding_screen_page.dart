@@ -99,8 +99,8 @@ class _OnboardingPageState extends State<OnbordingPage> {
                   prefs.setBool('showHome', true);
                   Navigator.of(context).pushNamed('/main_screen');
                 },
-                child:
-                    const Text('Get Started', style: TextStyle(fontSize: 24)),
+                child: Text(S.of(context).Get_Started,
+                    style: TextStyle(fontSize: 24)),
                 style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
@@ -115,7 +115,7 @@ class _OnboardingPageState extends State<OnbordingPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      child: const Text('Skip'),
+                      child: Text(S.of(context).Skip),
                       onPressed: () =>
                           Navigator.of(context).pushNamed('/main_screen'),
                     ),
@@ -136,7 +136,7 @@ class _OnboardingPageState extends State<OnbordingPage> {
                       ),
                     ),
                     TextButton(
-                      child: const Text('Next'),
+                      child: Text(S.of(context).Next),
                       onPressed: () => controller.nextPage(
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut,

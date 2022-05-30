@@ -2,10 +2,8 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hive/hive.dart';
 import 'package:vk/main_screen/sections.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
@@ -55,9 +53,9 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             valueListenable: Hive.box<double>('balance').listenable(),
             builder: (context, box, _) {
               return Text(
-                "Баланс: " +
+                S.of(context).Balance +
                     (Hive.box<double>('balance').get('bal') == null
-                        ? "0" + '\₽'
+                        ? "0"
                         : Hive.box<double>('balance')
                             .get('bal')!
                             .toStringAsFixed(1)) +
@@ -103,7 +101,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
           ListTile(
             leading: const Icon(Ionicons.home_outline, size: 25),
             title: Text(
-              "Главная",
+              S.of(context).Main,
               style: TextStyle(fontSize: 16),
             ),
             onTap: () {
@@ -113,7 +111,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
           ListTile(
             leading: const Icon(Ionicons.wallet_outline, size: 25),
             title: Text(
-              "Копилка",
+              S.of(context).Piggy_bank,
               style: TextStyle(fontSize: 16),
             ),
             onTap: () {
@@ -161,7 +159,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                   final transactions = box.values.toList().cast<Data>();
                   if (transactions.isEmpty) {
                     return Center(
-                      child: Text("Nothing there"),
+                      child: Text(S.of(context).Nothing_there),
                     );
                   }
                   return Expanded(
@@ -243,7 +241,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
-            label: 'Delete',
+            label: S.of(context).Delete,
           ),
         ],
       ),
@@ -335,14 +333,14 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Center(child: Text('Изменение транзакции')),
+            title: Center(child: Text(S.of(context).Change_Transaction)),
             content: SizedBox(
               height: 200,
               child: Column(
                 children: [
                   Row(
                     children: [
-                      Text('Категория: '),
+                      Text(S.of(context).Category_one),
                       SizedBox(
                         width: 40,
                       ),
@@ -384,7 +382,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                   ),
                   Row(
                     children: [
-                      Text('Стоимость:'),
+                      Text(S.of(context).Cost),
                       SizedBox(width: 40),
                       Expanded(
                           child: TextFormField(
@@ -405,7 +403,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                   ),
                   Row(
                     children: [
-                      Text('Дата:'),
+                      Text(S.of(context).Date),
                       SizedBox(width: 40),
                       Expanded(
                           child: TextFormField(
@@ -451,7 +449,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                     ],
                   ),
                   Row(children: [
-                    Text('Описание:'),
+                    Text(S.of(context).Description),
                     SizedBox(width: 20),
                     Expanded(
                         child: TextField(
@@ -477,7 +475,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Отмена'),
+                child: Text(S.of(context).Cancel),
               ),
               FlatButton(
                 onPressed: () {
@@ -488,7 +486,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
                       description_controller.text.toString());
                   Navigator.pop(context);
                 },
-                child: Text('Ок'),
+                child: Text(S.of(context).Ok),
               ),
             ],
           );
@@ -655,14 +653,14 @@ class _editScreenState extends State<editScreen> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Center(child: Text('Изменение транзакции')),
+      title: Center(child: Text(S.of(context).Change_Transaction)),
       content: SizedBox(
         height: 200,
         child: Column(
           children: [
             Row(
               children: [
-                Text('Категория: '),
+                Text(S.of(context).Category_one),
                 SizedBox(
                   width: 40,
                 ),
@@ -680,8 +678,12 @@ class _editScreenState extends State<editScreen> {
                       dropdownValue = newValue!;
                     });
                   },
-                  items: <String>['Акции', 'Подарки', 'Зарплата', 'Еще']
-                      .map<DropdownMenuItem<String>>((String value) {
+                  items: <String>[
+                    S.of(context).Category_Stock,
+                    S.of(context).Category_Gifts,
+                    S.of(context).Category_Paycheck,
+                    S.of(context).Category_More
+                  ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -692,7 +694,7 @@ class _editScreenState extends State<editScreen> {
             ),
             Row(
               children: [
-                Text('Стоимость:'),
+                Text(S.of(context).Cost),
                 SizedBox(width: 40),
                 Expanded(
                     child: TextField(
@@ -713,7 +715,7 @@ class _editScreenState extends State<editScreen> {
             ),
             Row(
               children: [
-                Text('Дата:'),
+                Text(S.of(context).Date),
                 SizedBox(width: 40),
                 Expanded(child: TextField()),
                 OutlinedButton(
@@ -755,13 +757,13 @@ class _editScreenState extends State<editScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Больше'),
+          child: Text(S.of(context).More),
         ),
         FlatButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Меньше'),
+          child: Text(S.of(context).Less),
         ),
       ],
     );
