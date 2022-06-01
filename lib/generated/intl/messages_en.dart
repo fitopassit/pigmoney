@@ -44,8 +44,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transport"),
         "Category_Workout": MessageLookupByLibrary.simpleMessage("Workout"),
         "Category_one": MessageLookupByLibrary.simpleMessage("Category: "),
-        "Change_Transaction":
-            MessageLookupByLibrary.simpleMessage("Change Transaction"),
         "Collected": MessageLookupByLibrary.simpleMessage("Collected"),
         "Cost": MessageLookupByLibrary.simpleMessage("Cost:"),
         "Date": MessageLookupByLibrary.simpleMessage("Date:"),
@@ -72,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("How much you Income?"),
         "Income": MessageLookupByLibrary.simpleMessage("Income"),
         "Info": MessageLookupByLibrary.simpleMessage("Info"),
+        "Info_Transaction":
+            MessageLookupByLibrary.simpleMessage("Info about transaction"),
         "Intr1": MessageLookupByLibrary.simpleMessage(
             "We are happy to see you in our app!"),
         "Intr2": MessageLookupByLibrary.simpleMessage(

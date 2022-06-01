@@ -560,11 +560,11 @@ class S {
     );
   }
 
-  /// `Change Transaction`
-  String get Change_Transaction {
+  /// `Info about transaction`
+  String get Info_Transaction {
     return Intl.message(
-      'Change Transaction',
-      name: 'Change_Transaction',
+      'Info about transaction',
+      name: 'Info_Transaction',
       desc: '',
       args: [],
     );

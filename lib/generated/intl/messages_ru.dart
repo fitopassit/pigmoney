@@ -45,8 +45,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Транспорт"),
         "Category_Workout": MessageLookupByLibrary.simpleMessage("Тренировка"),
         "Category_one": MessageLookupByLibrary.simpleMessage("Категория: "),
-        "Change_Transaction":
-            MessageLookupByLibrary.simpleMessage("Изменение транзакции"),
         "Collected": MessageLookupByLibrary.simpleMessage("Собрано:"),
         "Cost": MessageLookupByLibrary.simpleMessage("Стоимость:"),
         "Date": MessageLookupByLibrary.simpleMessage("Дата:"),
@@ -72,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Сколько вы заработали?"),
         "Income": MessageLookupByLibrary.simpleMessage("Доход"),
         "Info": MessageLookupByLibrary.simpleMessage("Информация"),
+        "Info_Transaction":
+            MessageLookupByLibrary.simpleMessage("Информация о транзакции"),
         "Intr1": MessageLookupByLibrary.simpleMessage(
             "Мы рады видеть вас в нашем приложении!"),
         "Intr2": MessageLookupByLibrary.simpleMessage(

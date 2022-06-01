@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vk/main_screen/expense.dart';
-import 'package:vk/main_screen/add_income_widget.dart';
-import 'package:vk/main_screen/main_screen_widget.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:vk/main_screen/onboarding_screen_page.dart';
-import 'package:vk/theme/theme.dart';
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vk/main_screen/data.dart';
 

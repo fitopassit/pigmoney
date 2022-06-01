@@ -333,7 +333,7 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Center(child: Text(S.of(context).Change_Transaction)),
+            title: Center(child: Text(S.of(context).Info_Transaction)),
             content: SizedBox(
               height: 200,
               child: Column(
@@ -450,17 +450,6 @@ class _mainScreenWidgetState extends State<mainScreenWidget> {
             actions: [
               FlatButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(S.of(context).Cancel),
-              ),
-              FlatButton(
-                onPressed: () {
-                  editTransaction(
-                      transaction,
-                      double.parse(cost_controller.text),
-                      _selectedDate.toString(),
-                      description_controller.text.toString());
                   Navigator.pop(context);
                 },
                 child: Text(S.of(context).Ok),
@@ -630,7 +619,7 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Center(child: Text(S.of(context).Change_Transaction)),
+      title: Center(child: Text(S.of(context).Info_Transaction)),
       content: SizedBox(
         height: 200,
         child: Column(
